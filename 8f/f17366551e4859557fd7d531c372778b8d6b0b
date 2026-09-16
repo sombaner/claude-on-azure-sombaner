@@ -1,0 +1,135 @@
+infra/04-apim-gateway.bicep
+  s_ef8bd3349d0569::t_333ee4a468791a 10,17-18,56
+infra/09-workbook.bicep
+  s_ef8bd3349d0569::t_b013c668ca609d 18-19,37
+admin/client-configuration.jq
+  s_d287bbc3174778::t_344e823c96ab58 35
+  s_ef8bd3349d0569::t_527a317a29969f 5,13-14,18,20-21,23-25,31
+  s_ef8bd3349d0569::t_476567bee0b703 1-4,6-12,15-17,19,22,26-30,32-34,36-44
+tests/test_gateway_scripts.mjs
+  s_ef8bd3349d0569::t_6b6b1472f0a034 344-345,347,351-352,393-409,413
+  s_d287bbc3174778::t_344e823c96ab58 118-123
+  s_d287bbc3174778::t_deb64d76601f09 195,202-203
+  s_ef8bd3349d0569::t_9c822873504e2f 3,68-70,134-137,139-145,147-179,182-190,204-239,241-246,274-311,313-319,325-329,331-337,341,353-359,361-365,367-378,380,384-392,410-412,414
+  s_d287bbc3174778::t_a729b026bb8df7 247-273
+  s_d287bbc3174778::t_82025c02c83fa4 57-62
+  s_d287bbc3174778::t_38581ad51e8f14 12,191
+  s_ef8bd3349d0569::t_fa481a32b61111 138,312
+  s_ef8bd3349d0569::t_8f89b7ebfaa026 25,43,50,64,340,342,346
+  s_ef8bd3349d0569::t_527a317a29969f 71-117,124-133,348
+  s_ef8bd3349d0569::t_d366228c424ac6 1-2,4-10,13-24,26-31,33-36,38-42,44-45,48,51-56,63,65-67,415-416
+  s_d287bbc3174778::t_451fc5dc453f4b 180-181
+  s_d287bbc3174778::t_211037ec9e5194 360,379,381-383
+  s_ef8bd3349d0569::t_130f0c3e6baed7 32,37,46-47,49,320,338-339,343,349-350,366
+  s_d287bbc3174778::t_82ddcf7fe5efb4 11,146,192-194,196-201,240,321-324,330
+admin/export-claude-client-configuration.ps1
+  s_ef8bd3349d0569::t_476567bee0b703 1-27,35-68,71-83
+  s_ef8bd3349d0569::t_527a317a29969f 28-34,69-70
+admin/setup.example.json
+  s_ef8bd3349d0569::t_130f0c3e6baed7 30
+  s_ef8bd3349d0569::t_454569a92a18e8 1-28,31,33-48
+  s_ef8bd3349d0569::t_8f89b7ebfaa026 32
+  s_ef8bd3349d0569::t_be3c3f1f8bb47e 29
+admin/pricing-access.bicep
+  s_ef8bd3349d0569::t_454569a92a18e8 1-29
+.gitignore
+  s_ef8bd3349d0569::t_8f89b7ebfaa026 13
+  s_ef8bd3349d0569::t_6b6b1472f0a034 11-12
+snippets/05-gateway-smoke-test.sh
+  h_644325ca508991 11-12
+admin/claude-gateway-setup.ps1
+  s_ef8bd3349d0569::t_be3c3f1f8bb47e 1-22,24-31,33-54,95,100-160,167-193,195-266
+  s_ef8bd3349d0569::t_130f0c3e6baed7 96-97,99
+  s_ef8bd3349d0569::t_8f89b7ebfaa026 98
+  s_d287bbc3174778::t_9969fc225cd81c 23,55-94,161-166,194
+  s_ef8bd3349d0569::t_86721d7c413ce5 32
+infra/README.md
+  s_ef8bd3349d0569::t_bbdac8a255aae9 250-322
+  s_b605fc3a7620ce::t_1297d39b7dbba4 159-197
+  s_ef8bd3349d0569::t_6b6b1472f0a034 11-14,17-20
+  s_d287bbc3174778::t_6dea0b67e6697c 64-68,73,106-127
+  s_ef8bd3349d0569::t_9e8f777fc399dc 91,96-98,201
+  s_ef8bd3349d0569::t_248221828c2e9c 146,149-152
+  s_ef8bd3349d0569::t_0d3455474c9d97 15-16
+  s_ef8bd3349d0569::t_765af598abeeea 218
+  s_d287bbc3174778::t_c1dea722537e1a 128
+  s_ef8bd3349d0569::t_896637925631f6 153
+admin/README.md
+  s_d287bbc3174778::t_a729b026bb8df7 171,174-187,313-316
+  s_ef8bd3349d0569::t_8f89b7ebfaa026 188-189,193-194
+  s_d287bbc3174778::t_6dea0b67e6697c 225-245
+  s_ef8bd3349d0569::t_6b6b1472f0a034 1-60,64-159,161,170,172-173,190-192,195-196,324-337
+  s_ef8bd3349d0569::t_a7bbc1b118c696 61-63,160,162-169,197-224,246-312,317-323
+admin/export-claude-client-configuration.sh
+  s_ef8bd3349d0569::t_476567bee0b703 1-18,20-26,33-64,68-82,84-95
+  s_ef8bd3349d0569::t_527a317a29969f 83
+  s_d287bbc3174778::t_a729b026bb8df7 19
+  s_d287bbc3174778::t_2a37ff8a7ffaae 27-32,65-67
+admin/validate-config.jq
+  s_ef8bd3349d0569::t_be3c3f1f8bb47e 7-8
+  s_ef8bd3349d0569::t_454569a92a18e8 1-6,9-24
+developer/README.md
+  s_ef8bd3349d0569::t_a7bbc1b118c696 1,4,7-48,92,121-122
+  s_ef8bd3349d0569::t_8f89b7ebfaa026 3,67-68,77-78
+  s_ef8bd3349d0569::t_6b6b1472f0a034 2,5-6,49-66,69-76,79-91,93-120,123-129
+developer/setup-claude-workstation.ps1
+  s_ef8bd3349d0569::t_fa481a32b61111 14,36-37,109
+  s_ef8bd3349d0569::t_8f89b7ebfaa026 38,85,89
+  s_d287bbc3174778::t_82025c02c83fa4 41-42
+  s_d287bbc3174778::t_211037ec9e5194 29,44,68
+  s_ef8bd3349d0569::t_d366228c424ac6 1-13,15-25,30-31,35,45-67,69-70,72-84,86-88,94-108,110-114
+  s_ef8bd3349d0569::t_130f0c3e6baed7 26-28,32-34,39-40,43,71,90-93
+admin/claude-gateway-setup.sh
+  s_d287bbc3174778::t_e11ad08cc1bb28 24,60-98,175-180,202
+  s_ef8bd3349d0569::t_5c0a3e524a4170 1-23,25-33,36-50,52-59,99,116-174,181-191,199-201,203-258
+  s_ef8bd3349d0569::t_be3c3f1f8bb47e 34-35,192-198
+  s_ef8bd3349d0569::t_130f0c3e6baed7 100,105-113
+  s_ef8bd3349d0569::t_8f89b7ebfaa026 114
+  s_ef8bd3349d0569::t_fa481a32b61111 51
+  s_ef8bd3349d0569::t_9c822873504e2f 101-104,115
+developer/setup-claude-workstation.sh
+  s_ef8bd3349d0569::t_130f0c3e6baed7 48-50,52,84,97
+  s_d287bbc3174778::t_7cd83027c0d0d7 47
+  s_d287bbc3174778::t_82025c02c83fa4 53-54
+  s_d287bbc3174778::t_211037ec9e5194 24,57,83
+  s_ef8bd3349d0569::t_8f89b7ebfaa026 56,94,96
+  s_ef8bd3349d0569::t_fa481a32b61111 43,111
+  s_ef8bd3349d0569::t_d366228c424ac6 1-23,25-42,44-46,51,55,58-82,85-93,95,98-110,112-117
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "8ff17366551e4859557fd7d531c372778b8d6b0b",
+  "prompts": {},
+  "humans": {
+    "h_644325ca508991": {
+      "author": "Somnath Banerjee <sombaner@github.com>"
+    }
+  },
+  "sessions": {
+    "s_b605fc3a7620ce": {
+      "agent_id": {
+        "tool": "github-copilot",
+        "id": "e827f1c2-3893-4ce8-8f2a-69b7cd0c858b",
+        "model": "copilot/gpt-5.6-sol"
+      },
+      "human_author": "Somnath Banerjee <sombaner@github.com>"
+    },
+    "s_d287bbc3174778": {
+      "agent_id": {
+        "tool": "github-copilot",
+        "id": "50716ec6-5cf2-4be6-b929-0f9d2f93041b",
+        "model": "copilot/gpt-5.6-sol"
+      },
+      "human_author": "Somnath Banerjee <sombaner@github.com>"
+    },
+    "s_ef8bd3349d0569": {
+      "agent_id": {
+        "tool": "github-copilot",
+        "id": "3f3e869f-3934-43c2-905a-fcecbf370fdf",
+        "model": "copilot/gpt-5.5"
+      },
+      "human_author": "Somnath Banerjee <sombaner@github.com>"
+    }
+  }
+}
