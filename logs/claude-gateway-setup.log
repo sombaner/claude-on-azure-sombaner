@@ -7040,3 +7040,714 @@ Deploying 09-workbook in rg-test-claude-setup
 [2026-09-19T16:35:50Z] DEBUG: Azure CLI: az deployment group create
 INFO: Command ran in 34.765 seconds (init: 0.069, invoke: 34.696)
 Selected steps completed. Runtime budget enforcement still requires traffic, telemetry delivery and per-tier verification; deployment success alone is not proof.
+[2026-10-12T09:24:10Z] Streaming setup output to logs/claude-gateway-setup.log
+[2026-10-12T09:24:10Z] DEBUG: Debug logging enabled (Azure CLI verbose mode; raw shell tracing is disabled).
+Stage=all; subscription=1c8300c9-08b4-4d88-b426-3868f3b963a1; resource group=rg-test-infosys; APIM=claude-test-sombaner-gateway (centralus); budget=centralus; Cosmos=centralus
+Order: preflight -> bootstrap APIM only if absent -> tiers/DCR -> authenticated budget platform -> pricing permissions + both price stores -> publish Functions -> final APIM -> onboarding export -> optional smoke/reporting/reconciliation.
+Options: {"registerProviders":false,"checkEp1Quota":true,"pricesReviewed":false,"workbook":true,"summaryRule":false,"grafana":true,"reconcile":false,"smokeTest":false}
+StandardV2 APIM, EP1, Redis, Cosmos, Event Hub and optional Grafana incur charges. Budget accounting is asynchronous, fail-open and excludes cache writes.
+[2026-10-12T09:24:10Z] DEBUG: Azure CLI: az account show --subscription
+INFO: Command ran in 0.371 seconds (init: 0.137, invoke: 0.233)
+[2026-10-12T09:24:11Z] DEBUG: Azure CLI: az account set --subscription
+INFO: Command ran in 0.315 seconds (init: 0.074, invoke: 0.241)
+[2026-10-12T09:24:14Z] DEBUG: Azure CLI: az group show --name
+INFO: Command ran in 1.042 seconds (init: 0.071, invoke: 0.971)
+[2026-10-12T09:24:15Z] DEBUG: Azure CLI: az group show --name
+INFO: Command ran in 0.977 seconds (init: 0.059, invoke: 0.918)
+[2026-10-12T09:24:16Z] DEBUG: Azure CLI: az cognitiveservices account show
+INFO: Command ran in 1.152 seconds (init: 0.065, invoke: 1.087)
+[2026-10-12T09:24:17Z] DEBUG: Azure CLI: az resource show --ids
+INFO: Command ran in 1.838 seconds (init: 0.064, invoke: 1.774)
+[2026-10-12T09:24:19Z] DEBUG: Azure CLI: az cognitiveservices account deployment
+INFO: Command ran in 1.074 seconds (init: 0.062, invoke: 1.012)
+[2026-10-12T09:24:20Z] DEBUG: Azure CLI: az ad app show
+INFO: Request URL: 'https://graph.microsoft.com/v1.0/applications?$filter=appId%20eq%20%27eceef4d9-ea55-4806-8016-80e6388523e6%27'
+INFO: Request method: 'GET'
+INFO: Request headers:
+INFO:     'User-Agent': 'python/3.13.16 (macOS-26.7-arm64-arm-64bit-Mach-O) AZURECLI/2.87.0 (HOMEBREW)'
+INFO:     'Accept-Encoding': 'gzip, deflate'
+INFO:     'Accept': '*/*'
+INFO:     'Connection': 'keep-alive'
+INFO:     'x-ms-client-request-id': '46d08180-0385-43fe-8708-b5a217a17916'
+INFO:     'CommandName': 'ad app show'
+INFO:     'ParameterSetName': '--id -o --verbose'
+INFO:     'Authorization': 'Bearer eyJ0eXAiOiJKV...'
+INFO: Request body:
+INFO: None
+INFO: Response status: 200
+INFO: Response headers:
+INFO:     'Date': 'Mon, 12 Oct 2026 09:24:22 GMT'
+INFO:     'Content-Type': 'application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=false;charset=utf-8'
+INFO:     'Transfer-Encoding': 'chunked'
+INFO:     'Connection': 'keep-alive'
+INFO:     'Cache-Control': 'no-cache'
+INFO:     'Content-Encoding': 'gzip'
+INFO:     'Vary': 'Accept-Encoding'
+INFO:     'Strict-Transport-Security': 'max-age=31536000'
+INFO:     'request-id': '7d28f02c-4636-42d8-9b94-5393adab6326'
+INFO:     'client-request-id': '7d28f02c-4636-42d8-9b94-5393adab6326'
+INFO:     'x-ms-ags-diagnostic': '{"ServerInfo":{"DataCenter":"Central India","Slice":"E","Ring":"3","ScaleUnit":"000","RoleInstance":"PN1PEPF0000703A"}}'
+INFO:     'x-ms-resource-unit': '2'
+INFO:     'OData-Version': '4.0'
+INFO:     'X-Cache': 'CONFIG_NOCACHE'
+INFO: Response content:
+INFO: {"@odata.context":"https://graph.microsoft.com/v1.0/$metadata#applications","value":[{"id":"f88eb66b-d0d6-4abf-905a-9b50672e1190","deletedDateTime":null,"appId":"eceef4d9-ea55-4806-8016-80e6388523e6","applicationTemplateId":null,"disabledByMicrosoftStatus":null,"createdByAppId":"04b07795-8ddb-461a-bbee-02f9e1bf7b46","createdDateTime":"2026-09-19T14:10:11Z","displayName":"Claude Desktop - sombaner-test-final-apim","description":null,"groupMembershipClaims":null,"identifierUris":["api://eceef4d9-ea55-4806-8016-80e6388523e6"],"isDeviceOnlyAuthSupported":null,"isDisabled":null,"isFallbackPublicClient":true,"nativeAuthenticationApisEnabled":null,"notes":null,"publisherDomain":"fdpo.onmicrosoft.com","serviceManagementReference":"e4847f9a-c5dc-435d-9d53-9b9c65b154e7","signInAudience":"AzureADMyOrg","tags":[],"tokenEncryptionKeyId":null,"uniqueName":null,"samlMetadataUrl":null,"defaultRedirectUri":null,"certification":null,"optionalClaims":null,"requestSignatureVerification":null,"addIns":[],"api":{"acceptMappedClaims":null,"knownClientApplications":[],"requestedAccessTokenVersion":2,"oauth2PermissionScopes":[{"adminConsentDescription":"Access the Claude gateway as the signed-in user","adminConsentDisplayName":"Access Claude Gateway","id":"acf3124f-914b-41a3-9e93-1213070650ba","isEnabled":true,"type":"User","userConsentDescription":"Access the Claude gateway as you","userConsentDisplayName":"Access Claude Gateway","value":"access_as_user"}],"preAuthorizedApplications":[{"appId":"4afb71c2-88a3-4060-9410-a4e6f311e797","delegatedPermissionIds":["acf3124f-914b-41a3-9e93-1213070650ba"]}]},"appRoles":[{"allowedMemberTypes":["User"],"description":"Access to the Claude gateway","displayName":"Claude User","id":"6ac246dc-85b0-47ff-9b5f-d4cb555c92bc","isEnabled":true,"origin":"Application","value":"Claude.User"}],"info":{"logoUrl":null,"marketingUrl":null,"privacyStatementUrl":null,"supportUrl":null,"termsOfServiceUrl":null},"keyCredentials":[],"parentalControlSettings":{"countriesBlockedForMinors":[],"legalAgeGroupRule":"Allow"},"passwordCredentials":[],"publicClient":{"redirectUris":["http://localhost","http://127.0.0.1/callback"]},"requiredResourceAccess":[{"resourceAppId":"956ec5b2-919d-4254-9bf7-40514e38697b","resourceAccess":[{"id":"3bdf38e6-1fdb-4a85-b5cd-2cd6dca354bf","type":"Scope"}]}],"verifiedPublisher":{"displayName":null,"verifiedPublisherId":null,"addedDateTime":null},"web":{"homePageUrl":null,"logoutUrl":null,"redirectUris":[],"implicitGrantSettings":{"enableAccessTokenIssuance":false,"enableIdTokenIssuance":false},"redirectUriSettings":[]},"servicePrincipalLockConfiguration":{"isEnabled":true,"allProperties":true,"credentialsWithUsageVerify":null,"credentialsWithUsageSign":null,"identifierUris":null,"tokenEncryptionKeyId":null},"spa":{"redirectUris":[]}}]}
+INFO: Request URL: 'https://graph.microsoft.com/v1.0/applications/f88eb66b-d0d6-4abf-905a-9b50672e1190'
+INFO: Request method: 'GET'
+INFO: Request headers:
+INFO:     'User-Agent': 'python/3.13.16 (macOS-26.7-arm64-arm-64bit-Mach-O) AZURECLI/2.87.0 (HOMEBREW)'
+INFO:     'Accept-Encoding': 'gzip, deflate'
+INFO:     'Accept': '*/*'
+INFO:     'Connection': 'keep-alive'
+INFO:     'x-ms-client-request-id': '83be58aa-da2a-45c9-a12f-aee01ab712e8'
+INFO:     'CommandName': 'ad app show'
+INFO:     'ParameterSetName': '--id -o --verbose'
+INFO:     'Authorization': 'Bearer eyJ0eXAiOiJKV...'
+INFO: Request body:
+INFO: None
+INFO: Response status: 200
+INFO: Response headers:
+INFO:     'Date': 'Mon, 12 Oct 2026 09:24:23 GMT'
+INFO:     'Content-Type': 'application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=false;charset=utf-8'
+INFO:     'Transfer-Encoding': 'chunked'
+INFO:     'Connection': 'keep-alive'
+INFO:     'Cache-Control': 'no-cache'
+INFO:     'Content-Encoding': 'gzip'
+INFO:     'Vary': 'Accept-Encoding'
+INFO:     'Strict-Transport-Security': 'max-age=31536000'
+INFO:     'request-id': '980bc5d8-efba-42b6-9c43-d508e94f91eb'
+INFO:     'client-request-id': '980bc5d8-efba-42b6-9c43-d508e94f91eb'
+INFO:     'x-ms-ags-diagnostic': '{"ServerInfo":{"DataCenter":"Central India","Slice":"E","Ring":"3","ScaleUnit":"001","RoleInstance":"PN3PEPF00000A6D"}}'
+INFO:     'x-ms-resource-unit': '1'
+INFO:     'OData-Version': '4.0'
+INFO:     'X-Cache': 'CONFIG_NOCACHE'
+INFO: Response content:
+INFO: {"@odata.context":"https://graph.microsoft.com/v1.0/$metadata#applications/$entity","id":"f88eb66b-d0d6-4abf-905a-9b50672e1190","deletedDateTime":null,"appId":"eceef4d9-ea55-4806-8016-80e6388523e6","applicationTemplateId":null,"disabledByMicrosoftStatus":null,"createdByAppId":"04b07795-8ddb-461a-bbee-02f9e1bf7b46","createdDateTime":"2026-09-19T14:10:11Z","displayName":"Claude Desktop - sombaner-test-final-apim","description":null,"groupMembershipClaims":null,"identifierUris":["api://eceef4d9-ea55-4806-8016-80e6388523e6"],"isDeviceOnlyAuthSupported":null,"isDisabled":null,"isFallbackPublicClient":true,"nativeAuthenticationApisEnabled":null,"notes":null,"publisherDomain":"fdpo.onmicrosoft.com","serviceManagementReference":"e4847f9a-c5dc-435d-9d53-9b9c65b154e7","signInAudience":"AzureADMyOrg","tags":[],"tokenEncryptionKeyId":null,"uniqueName":null,"samlMetadataUrl":null,"defaultRedirectUri":null,"certification":null,"optionalClaims":null,"requestSignatureVerification":null,"addIns":[],"api":{"acceptMappedClaims":null,"knownClientApplications":[],"requestedAccessTokenVersion":2,"oauth2PermissionScopes":[{"adminConsentDescription":"Access the Claude gateway as the signed-in user","adminConsentDisplayName":"Access Claude Gateway","id":"acf3124f-914b-41a3-9e93-1213070650ba","isEnabled":true,"type":"User","userConsentDescription":"Access the Claude gateway as you","userConsentDisplayName":"Access Claude Gateway","value":"access_as_user"}],"preAuthorizedApplications":[{"appId":"4afb71c2-88a3-4060-9410-a4e6f311e797","delegatedPermissionIds":["acf3124f-914b-41a3-9e93-1213070650ba"]}]},"appRoles":[{"allowedMemberTypes":["User"],"description":"Access to the Claude gateway","displayName":"Claude User","id":"6ac246dc-85b0-47ff-9b5f-d4cb555c92bc","isEnabled":true,"origin":"Application","value":"Claude.User"}],"info":{"logoUrl":null,"marketingUrl":null,"privacyStatementUrl":null,"supportUrl":null,"termsOfServiceUrl":null},"keyCredentials":[],"parentalControlSettings":{"countriesBlockedForMinors":[],"legalAgeGroupRule":"Allow"},"passwordCredentials":[],"publicClient":{"redirectUris":["http://localhost","http://127.0.0.1/callback"]},"requiredResourceAccess":[{"resourceAppId":"956ec5b2-919d-4254-9bf7-40514e38697b","resourceAccess":[{"id":"3bdf38e6-1fdb-4a85-b5cd-2cd6dca354bf","type":"Scope"}]}],"verifiedPublisher":{"displayName":null,"verifiedPublisherId":null,"addedDateTime":null},"web":{"homePageUrl":null,"logoutUrl":null,"redirectUris":[],"implicitGrantSettings":{"enableAccessTokenIssuance":false,"enableIdTokenIssuance":false},"redirectUriSettings":[]},"servicePrincipalLockConfiguration":{"isEnabled":true,"allProperties":true,"credentialsWithUsageVerify":null,"credentialsWithUsageSign":null,"identifierUris":null,"tokenEncryptionKeyId":null},"spa":{"redirectUris":[]}}
+INFO: Command ran in 2.667 seconds (init: 0.064, invoke: 2.603)
+[2026-10-12T09:24:23Z] DEBUG: Azure CLI: az ad app list
+INFO: Request URL: 'https://graph.microsoft.com/v1.0/applications?$filter=startswith%28displayName%2C%27Claude%20Desktop%20-%20claude-test-sombaner-gateway%27%29'
+INFO: Request method: 'GET'
+INFO: Request headers:
+INFO:     'User-Agent': 'python/3.13.16 (macOS-26.7-arm64-arm-64bit-Mach-O) AZURECLI/2.87.0 (HOMEBREW)'
+INFO:     'Accept-Encoding': 'gzip, deflate'
+INFO:     'Accept': '*/*'
+INFO:     'Connection': 'keep-alive'
+INFO:     'x-ms-client-request-id': '068c1ab1-6d16-43e8-b3f5-69184484d4a2'
+INFO:     'CommandName': 'ad app list'
+INFO:     'ParameterSetName': '--display-name -o --verbose'
+INFO:     'Authorization': 'Bearer eyJ0eXAiOiJKV...'
+INFO: Request body:
+INFO: None
+INFO: Response status: 200
+INFO: Response headers:
+INFO:     'Date': 'Mon, 12 Oct 2026 09:24:24 GMT'
+INFO:     'Content-Type': 'application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=false;charset=utf-8'
+INFO:     'Transfer-Encoding': 'chunked'
+INFO:     'Connection': 'keep-alive'
+INFO:     'Cache-Control': 'no-cache'
+INFO:     'Content-Encoding': 'gzip'
+INFO:     'Vary': 'Accept-Encoding'
+INFO:     'Strict-Transport-Security': 'max-age=31536000'
+INFO:     'request-id': '8e96aab5-f443-41d6-afa5-7ff595e7d746'
+INFO:     'client-request-id': '8e96aab5-f443-41d6-afa5-7ff595e7d746'
+INFO:     'x-ms-ags-diagnostic': '{"ServerInfo":{"DataCenter":"Central India","Slice":"E","Ring":"3","ScaleUnit":"001","RoleInstance":"PN3PEPF000002C0"}}'
+INFO:     'x-ms-resource-unit': '2'
+INFO:     'OData-Version': '4.0'
+INFO:     'X-Cache': 'CONFIG_NOCACHE'
+INFO: Response content:
+INFO: {"@odata.context":"https://graph.microsoft.com/v1.0/$metadata#applications","value":[{"id":"87e335c3-24c6-42a0-83e9-c58a76766943","deletedDateTime":null,"appId":"4afb71c2-88a3-4060-9410-a4e6f311e797","applicationTemplateId":null,"disabledByMicrosoftStatus":null,"createdByAppId":"04b07795-8ddb-461a-bbee-02f9e1bf7b46","createdDateTime":"2026-10-12T09:19:15Z","displayName":"Claude Desktop - claude-test-sombaner-gateway","description":null,"groupMembershipClaims":null,"identifierUris":[],"isDeviceOnlyAuthSupported":null,"isDisabled":null,"isFallbackPublicClient":true,"nativeAuthenticationApisEnabled":null,"notes":null,"publisherDomain":"fdpo.onmicrosoft.com","serviceManagementReference":null,"signInAudience":"AzureADMyOrg","tags":[],"tokenEncryptionKeyId":null,"uniqueName":null,"samlMetadataUrl":null,"defaultRedirectUri":null,"certification":null,"optionalClaims":null,"requestSignatureVerification":null,"addIns":[],"api":{"acceptMappedClaims":null,"knownClientApplications":[],"requestedAccessTokenVersion":2,"oauth2PermissionScopes":[],"preAuthorizedApplications":[]},"appRoles":[],"info":{"logoUrl":null,"marketingUrl":null,"privacyStatementUrl":null,"supportUrl":null,"termsOfServiceUrl":null},"keyCredentials":[],"parentalControlSettings":{"countriesBlockedForMinors":[],"legalAgeGroupRule":"Allow"},"passwordCredentials":[],"publicClient":{"redirectUris":["http://localhost","http://127.0.0.1/callback"]},"requiredResourceAccess":[{"resourceAppId":"eceef4d9-ea55-4806-8016-80e6388523e6","resourceAccess":[{"id":"acf3124f-914b-41a3-9e93-1213070650ba","type":"Scope"}]}],"verifiedPublisher":{"displayName":null,"verifiedPublisherId":null,"addedDateTime":null},"web":{"homePageUrl":null,"logoutUrl":null,"redirectUris":[],"implicitGrantSettings":{"enableAccessTokenIssuance":false,"enableIdTokenIssuance":false},"redirectUriSettings":[]},"servicePrincipalLockConfiguration":{"isEnabled":true,"allProperties":true,"credentialsWithUsageVerify":null,"credentialsWithUsageSign":null,"identifierUris":null,"tokenEncryptionKeyId":null},"spa":{"redirectUris":[]}}]}
+INFO: Command ran in 0.787 seconds (init: 0.085, invoke: 0.701)
+[2026-10-12T09:24:24Z] DEBUG: Azure CLI: az ad sp list
+INFO: Request URL: 'https://graph.microsoft.com/v1.0/servicePrincipals?$filter=appId%20eq%20%274afb71c2-88a3-4060-9410-a4e6f311e797%27'
+INFO: Request method: 'GET'
+INFO: Request headers:
+INFO:     'User-Agent': 'python/3.13.16 (macOS-26.7-arm64-arm-64bit-Mach-O) AZURECLI/2.87.0 (HOMEBREW)'
+INFO:     'Accept-Encoding': 'gzip, deflate'
+INFO:     'Accept': '*/*'
+INFO:     'Connection': 'keep-alive'
+INFO:     'x-ms-client-request-id': '7daa3094-e573-4078-b63c-aad88a62cb71'
+INFO:     'CommandName': 'ad sp list'
+INFO:     'ParameterSetName': '--filter -o --verbose'
+INFO:     'Authorization': 'Bearer eyJ0eXAiOiJKV...'
+INFO: Request body:
+INFO: None
+INFO: Response status: 200
+INFO: Response headers:
+INFO:     'Date': 'Mon, 12 Oct 2026 09:24:26 GMT'
+INFO:     'Content-Type': 'application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=false;charset=utf-8'
+INFO:     'Transfer-Encoding': 'chunked'
+INFO:     'Connection': 'keep-alive'
+INFO:     'Cache-Control': 'no-cache'
+INFO:     'Content-Encoding': 'gzip'
+INFO:     'Vary': 'Accept-Encoding'
+INFO:     'Strict-Transport-Security': 'max-age=31536000'
+INFO:     'request-id': 'aa0dfeb5-14dc-438d-b542-ac6cdbc99bc2'
+INFO:     'client-request-id': 'aa0dfeb5-14dc-438d-b542-ac6cdbc99bc2'
+INFO:     'x-ms-ags-diagnostic': '{"ServerInfo":{"DataCenter":"Central India","Slice":"E","Ring":"3","ScaleUnit":"000","RoleInstance":"PN1PEPF000190F8"}}'
+INFO:     'x-ms-resource-unit': '1'
+INFO:     'OData-Version': '4.0'
+INFO:     'X-Cache': 'CONFIG_NOCACHE'
+INFO: Response content:
+INFO: {"@odata.context":"https://graph.microsoft.com/v1.0/$metadata#servicePrincipals","value":[{"id":"831b00c7-8901-42e8-b843-f475e819a0e8","deletedDateTime":null,"accountEnabled":true,"alternativeNames":[],"appDisplayName":"Claude Desktop - claude-test-sombaner-gateway","appDescription":null,"appId":"4afb71c2-88a3-4060-9410-a4e6f311e797","applicationTemplateId":null,"appOwnerOrganizationId":"16b3c013-d300-468d-ac64-7eda0820b6d3","appRoleAssignmentRequired":false,"createdByAppId":"04b07795-8ddb-461a-bbee-02f9e1bf7b46","createdDateTime":"2026-10-12T09:19:21Z","description":null,"disabledByMicrosoftStatus":null,"displayName":"Claude Desktop - claude-test-sombaner-gateway","homepage":null,"isDisabled":null,"loginUrl":null,"logoutUrl":null,"notes":null,"notificationEmailAddresses":[],"preferredSingleSignOnMode":null,"preferredTokenSigningKeyThumbprint":null,"replyUrls":["http://127.0.0.1/callback","http://localhost"],"servicePrincipalNames":["4afb71c2-88a3-4060-9410-a4e6f311e797"],"servicePrincipalType":"Application","signInAudience":"AzureADMyOrg","tags":[],"tokenEncryptionKeyId":null,"samlSingleSignOnSettings":null,"addIns":[],"appRoles":[],"info":{"logoUrl":null,"marketingUrl":null,"privacyStatementUrl":null,"supportUrl":null,"termsOfServiceUrl":null},"keyCredentials":[],"oauth2PermissionScopes":[],"passwordCredentials":[],"resourceSpecificApplicationPermissions":[],"verifiedPublisher":{"displayName":null,"verifiedPublisherId":null,"addedDateTime":null}}]}
+INFO: Command ran in 1.945 seconds (init: 0.077, invoke: 1.868)
+[2026-10-12T09:24:26Z] DEBUG: Azure CLI: az rest --method PATCH
+INFO: Request URL: 'https://graph.microsoft.com/v1.0/applications/f88eb66b-d0d6-4abf-905a-9b50672e1190'
+INFO: Request method: 'PATCH'
+INFO: Request headers:
+INFO:     'User-Agent': 'python/3.13.16 (macOS-26.7-arm64-arm-64bit-Mach-O) AZURECLI/2.87.0 (HOMEBREW)'
+INFO:     'Accept-Encoding': 'gzip, deflate'
+INFO:     'Accept': '*/*'
+INFO:     'Connection': 'keep-alive'
+INFO:     'Content-Type': 'application/json'
+INFO:     'x-ms-client-request-id': 'c5448404-154f-428e-8ee4-74d4372ccafd'
+INFO:     'CommandName': 'rest'
+INFO:     'ParameterSetName': '--method --url --headers --body -o --verbose'
+INFO:     'Authorization': 'Bearer eyJ0eXAiOiJKV...'
+INFO:     'Content-Length': '633'
+INFO: Request body:
+INFO: {"api": {"acceptMappedClaims": null, "knownClientApplications": [], "oauth2PermissionScopes": [{"adminConsentDescription": "Access the Claude gateway as the signed-in user", "adminConsentDisplayName": "Access Claude Gateway", "id": "acf3124f-914b-41a3-9e93-1213070650ba", "isEnabled": true, "type": "User", "userConsentDescription": "Access the Claude gateway as you", "userConsentDisplayName": "Access Claude Gateway", "value": "access_as_user"}], "preAuthorizedApplications": [{"appId": "4afb71c2-88a3-4060-9410-a4e6f311e797", "delegatedPermissionIds": ["acf3124f-914b-41a3-9e93-1213070650ba"]}], "requestedAccessTokenVersion": 2}}
+INFO: Response status: 204
+INFO: Response headers:
+INFO:     'Date': 'Mon, 12 Oct 2026 09:24:29 GMT'
+INFO:     'Connection': 'keep-alive'
+INFO:     'Cache-Control': 'no-cache'
+INFO:     'Strict-Transport-Security': 'max-age=31536000'
+INFO:     'request-id': '474c6ddd-395e-4ab3-a47e-def7e0b01171'
+INFO:     'client-request-id': '474c6ddd-395e-4ab3-a47e-def7e0b01171'
+INFO:     'x-ms-ags-diagnostic': '{"ServerInfo":{"DataCenter":"Central India","Slice":"E","Ring":"3","ScaleUnit":"001","RoleInstance":"PN3PEPF00000A70"}}'
+INFO:     'x-ms-resource-unit': '1'
+INFO:     'X-Cache': 'CONFIG_NOCACHE'
+INFO: Response content:
+INFO: 
+INFO: Command ran in 2.268 seconds (init: 0.067, invoke: 2.202)
+Claude Desktop public client: 4afb71c2-88a3-4060-9410-a4e6f311e797
+[2026-10-12T09:24:29Z] DEBUG: Azure CLI: az resource list --resource-group
+INFO: Command ran in 1.797 seconds (init: 0.076, invoke: 1.721)
+[2026-10-12T09:24:31Z] DEBUG: Azure CLI: az extension show --name
+INFO: Command ran in 0.168 seconds (init: 0.069, invoke: 0.099)
+[2026-10-12T09:24:31Z] DEBUG: Azure CLI: az quota show --resource-name
+INFO: Command ran in 4.638 seconds (init: 0.043, invoke: 4.595)
+[2026-10-12T09:24:36Z] DEBUG: Azure CLI: az quota usage show
+INFO: Command ran in 2.891 seconds (init: 0.086, invoke: 2.805)
+{
+  "id": "/subscriptions/1c8300c9-08b4-4d88-b426-3868f3b963a1/providers/Microsoft.Web/locations/centralus/providers/Microsoft.Quota/usages/EP1",
+  "name": "EP1",
+  "properties": {
+    "isQuotaApplicable": true,
+    "name": {
+      "localizedValue": "EP1 VMs",
+      "value": "EP1"
+    },
+    "properties": {},
+    "unit": "Instances",
+    "usages": {
+      "usagesType": "Individual",
+      "value": 2
+    }
+  },
+  "type": "Microsoft.Quota/Usages"
+}
+Quota limit/usage are advisory; they do not guarantee free regional capacity or Cosmos availability.
+WARNING: A new Bicep release is available: v0.48.1. Upgrade now by running "az bicep upgrade".
+WARNING: A new Bicep release is available: v0.48.1. Upgrade now by running "az bicep upgrade".
+WARNING: A new Bicep release is available: v0.48.1. Upgrade now by running "az bicep upgrade".
+WARNING: A new Bicep release is available: v0.48.1. Upgrade now by running "az bicep upgrade".
+WARNING: A new Bicep release is available: v0.48.1. Upgrade now by running "az bicep upgrade".
+WARNING: A new Bicep release is available: v0.48.1. Upgrade now by running "az bicep upgrade".
+WARNING: A new Bicep release is available: v0.48.1. Upgrade now by running "az bicep upgrade".
+WARNING: A new Bicep release is available: v0.48.1. Upgrade now by running "az bicep upgrade".
+WARNING: A new Bicep release is available: v0.48.1. Upgrade now by running "az bicep upgrade".
+WARNING: A new Bicep release is available: v0.48.1. Upgrade now by running "az bicep upgrade".
+WARNING: A new Bicep release is available: v0.48.1. Upgrade now by running "az bicep upgrade".
+Review PRICES in snippets/15-load-pricing.py against your agreement, then set options.pricesReviewed=true.
+[2026-10-12T09:30:54Z] Streaming setup output to logs/claude-gateway-setup.log
+[2026-10-12T09:30:54Z] DEBUG: Debug logging enabled (Azure CLI verbose mode; raw shell tracing is disabled).
+Stage=all; subscription=1c8300c9-08b4-4d88-b426-3868f3b963a1; resource group=rg-test-infosys; APIM=claude-test-sombaner-gateway (centralus); budget=centralus; Cosmos=centralus
+Order: preflight -> bootstrap APIM only if absent -> tiers/DCR -> authenticated budget platform -> pricing permissions + both price stores -> publish Functions -> final APIM -> onboarding export -> optional smoke/reporting/reconciliation.
+Options: {"registerProviders":false,"checkEp1Quota":true,"pricesReviewed":false,"workbook":true,"summaryRule":false,"grafana":true,"reconcile":false,"smokeTest":false}
+StandardV2 APIM, EP1, Redis, Cosmos, Event Hub and optional Grafana incur charges. Budget accounting is asynchronous, fail-open and excludes cache writes.
+[2026-10-12T09:30:54Z] DEBUG: Azure CLI: az account show --subscription
+INFO: Command ran in 0.345 seconds (init: 0.114, invoke: 0.231)
+[2026-10-12T09:30:55Z] DEBUG: Azure CLI: az account set --subscription
+INFO: Command ran in 0.332 seconds (init: 0.118, invoke: 0.214)
+[2026-10-12T09:30:58Z] DEBUG: Azure CLI: az group show --name
+INFO: Command ran in 1.097 seconds (init: 0.063, invoke: 1.034)
+[2026-10-12T09:31:00Z] DEBUG: Azure CLI: az group show --name
+INFO: Command ran in 1.521 seconds (init: 0.075, invoke: 1.447)
+[2026-10-12T09:31:01Z] DEBUG: Azure CLI: az cognitiveservices account show
+INFO: Command ran in 1.324 seconds (init: 0.066, invoke: 1.258)
+[2026-10-12T09:31:03Z] DEBUG: Azure CLI: az resource show --ids
+INFO: Command ran in 1.359 seconds (init: 0.074, invoke: 1.285)
+[2026-10-12T09:31:04Z] DEBUG: Azure CLI: az cognitiveservices account deployment
+INFO: Command ran in 1.084 seconds (init: 0.064, invoke: 1.020)
+[2026-10-12T09:31:06Z] DEBUG: Azure CLI: az ad app show
+INFO: Request URL: 'https://graph.microsoft.com/v1.0/applications?$filter=appId%20eq%20%27eceef4d9-ea55-4806-8016-80e6388523e6%27'
+INFO: Request method: 'GET'
+INFO: Request headers:
+INFO:     'User-Agent': 'python/3.13.16 (macOS-26.7-arm64-arm-64bit-Mach-O) AZURECLI/2.87.0 (HOMEBREW)'
+INFO:     'Accept-Encoding': 'gzip, deflate'
+INFO:     'Accept': '*/*'
+INFO:     'Connection': 'keep-alive'
+INFO:     'x-ms-client-request-id': '7b54e3b8-f004-49aa-bd2b-30cc32b63b48'
+INFO:     'CommandName': 'ad app show'
+INFO:     'ParameterSetName': '--id -o --verbose'
+INFO:     'Authorization': 'Bearer eyJ0eXAiOiJKV...'
+INFO: Request body:
+INFO: None
+INFO: Response status: 200
+INFO: Response headers:
+INFO:     'Date': 'Mon, 12 Oct 2026 09:31:06 GMT'
+INFO:     'Content-Type': 'application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=false;charset=utf-8'
+INFO:     'Transfer-Encoding': 'chunked'
+INFO:     'Connection': 'keep-alive'
+INFO:     'Cache-Control': 'no-cache'
+INFO:     'Content-Encoding': 'gzip'
+INFO:     'Vary': 'Accept-Encoding'
+INFO:     'Strict-Transport-Security': 'max-age=31536000'
+INFO:     'request-id': 'a230d7b6-ccd6-4326-8548-82731e327b6d'
+INFO:     'client-request-id': 'a230d7b6-ccd6-4326-8548-82731e327b6d'
+INFO:     'x-ms-ags-diagnostic': '{"ServerInfo":{"DataCenter":"Central India","Slice":"E","Ring":"3","ScaleUnit":"001","RoleInstance":"PN3PEPF00000A6D"}}'
+INFO:     'x-ms-resource-unit': '2'
+INFO:     'OData-Version': '4.0'
+INFO:     'X-Cache': 'CONFIG_NOCACHE'
+INFO: Response content:
+INFO: {"@odata.context":"https://graph.microsoft.com/v1.0/$metadata#applications","value":[{"id":"f88eb66b-d0d6-4abf-905a-9b50672e1190","deletedDateTime":null,"appId":"eceef4d9-ea55-4806-8016-80e6388523e6","applicationTemplateId":null,"disabledByMicrosoftStatus":null,"createdByAppId":"04b07795-8ddb-461a-bbee-02f9e1bf7b46","createdDateTime":"2026-09-19T14:10:11Z","displayName":"Claude Desktop - sombaner-test-final-apim","description":null,"groupMembershipClaims":null,"identifierUris":["api://eceef4d9-ea55-4806-8016-80e6388523e6"],"isDeviceOnlyAuthSupported":null,"isDisabled":null,"isFallbackPublicClient":true,"nativeAuthenticationApisEnabled":null,"notes":null,"publisherDomain":"fdpo.onmicrosoft.com","serviceManagementReference":"e4847f9a-c5dc-435d-9d53-9b9c65b154e7","signInAudience":"AzureADMyOrg","tags":[],"tokenEncryptionKeyId":null,"uniqueName":null,"samlMetadataUrl":null,"defaultRedirectUri":null,"certification":null,"optionalClaims":null,"requestSignatureVerification":null,"addIns":[],"api":{"acceptMappedClaims":null,"knownClientApplications":[],"requestedAccessTokenVersion":2,"oauth2PermissionScopes":[{"adminConsentDescription":"Access the Claude gateway as the signed-in user","adminConsentDisplayName":"Access Claude Gateway","id":"acf3124f-914b-41a3-9e93-1213070650ba","isEnabled":true,"type":"User","userConsentDescription":"Access the Claude gateway as you","userConsentDisplayName":"Access Claude Gateway","value":"access_as_user"}],"preAuthorizedApplications":[{"appId":"4afb71c2-88a3-4060-9410-a4e6f311e797","delegatedPermissionIds":["acf3124f-914b-41a3-9e93-1213070650ba"]}]},"appRoles":[{"allowedMemberTypes":["User"],"description":"Access to the Claude gateway","displayName":"Claude User","id":"6ac246dc-85b0-47ff-9b5f-d4cb555c92bc","isEnabled":true,"origin":"Application","value":"Claude.User"}],"info":{"logoUrl":null,"marketingUrl":null,"privacyStatementUrl":null,"supportUrl":null,"termsOfServiceUrl":null},"keyCredentials":[],"parentalControlSettings":{"countriesBlockedForMinors":[],"legalAgeGroupRule":"Allow"},"passwordCredentials":[],"publicClient":{"redirectUris":["http://localhost","http://127.0.0.1/callback"]},"requiredResourceAccess":[{"resourceAppId":"956ec5b2-919d-4254-9bf7-40514e38697b","resourceAccess":[{"id":"3bdf38e6-1fdb-4a85-b5cd-2cd6dca354bf","type":"Scope"}]}],"verifiedPublisher":{"displayName":null,"verifiedPublisherId":null,"addedDateTime":null},"web":{"homePageUrl":null,"logoutUrl":null,"redirectUris":[],"implicitGrantSettings":{"enableAccessTokenIssuance":false,"enableIdTokenIssuance":false},"redirectUriSettings":[]},"servicePrincipalLockConfiguration":{"isEnabled":true,"allProperties":true,"credentialsWithUsageVerify":null,"credentialsWithUsageSign":null,"identifierUris":null,"tokenEncryptionKeyId":null},"spa":{"redirectUris":[]}}]}
+INFO: Request URL: 'https://graph.microsoft.com/v1.0/applications/f88eb66b-d0d6-4abf-905a-9b50672e1190'
+INFO: Request method: 'GET'
+INFO: Request headers:
+INFO:     'User-Agent': 'python/3.13.16 (macOS-26.7-arm64-arm-64bit-Mach-O) AZURECLI/2.87.0 (HOMEBREW)'
+INFO:     'Accept-Encoding': 'gzip, deflate'
+INFO:     'Accept': '*/*'
+INFO:     'Connection': 'keep-alive'
+INFO:     'x-ms-client-request-id': '732eb71a-1eb8-4ebb-9e6c-ad78d99dafe6'
+INFO:     'CommandName': 'ad app show'
+INFO:     'ParameterSetName': '--id -o --verbose'
+INFO:     'Authorization': 'Bearer eyJ0eXAiOiJKV...'
+INFO: Request body:
+INFO: None
+INFO: Response status: 200
+INFO: Response headers:
+INFO:     'Date': 'Mon, 12 Oct 2026 09:31:07 GMT'
+INFO:     'Content-Type': 'application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=false;charset=utf-8'
+INFO:     'Transfer-Encoding': 'chunked'
+INFO:     'Connection': 'keep-alive'
+INFO:     'Cache-Control': 'no-cache'
+INFO:     'Content-Encoding': 'gzip'
+INFO:     'Vary': 'Accept-Encoding'
+INFO:     'Strict-Transport-Security': 'max-age=31536000'
+INFO:     'request-id': '16ea76dc-8fe9-446d-93e9-5fc04a2f9b6b'
+INFO:     'client-request-id': '16ea76dc-8fe9-446d-93e9-5fc04a2f9b6b'
+INFO:     'x-ms-ags-diagnostic': '{"ServerInfo":{"DataCenter":"Central India","Slice":"E","Ring":"3","ScaleUnit":"001","RoleInstance":"PN3PEPF00000A6D"}}'
+INFO:     'x-ms-resource-unit': '1'
+INFO:     'OData-Version': '4.0'
+INFO:     'X-Cache': 'CONFIG_NOCACHE'
+INFO: Response content:
+INFO: {"@odata.context":"https://graph.microsoft.com/v1.0/$metadata#applications/$entity","id":"f88eb66b-d0d6-4abf-905a-9b50672e1190","deletedDateTime":null,"appId":"eceef4d9-ea55-4806-8016-80e6388523e6","applicationTemplateId":null,"disabledByMicrosoftStatus":null,"createdByAppId":"04b07795-8ddb-461a-bbee-02f9e1bf7b46","createdDateTime":"2026-09-19T14:10:11Z","displayName":"Claude Desktop - sombaner-test-final-apim","description":null,"groupMembershipClaims":null,"identifierUris":["api://eceef4d9-ea55-4806-8016-80e6388523e6"],"isDeviceOnlyAuthSupported":null,"isDisabled":null,"isFallbackPublicClient":true,"nativeAuthenticationApisEnabled":null,"notes":null,"publisherDomain":"fdpo.onmicrosoft.com","serviceManagementReference":"e4847f9a-c5dc-435d-9d53-9b9c65b154e7","signInAudience":"AzureADMyOrg","tags":[],"tokenEncryptionKeyId":null,"uniqueName":null,"samlMetadataUrl":null,"defaultRedirectUri":null,"certification":null,"optionalClaims":null,"requestSignatureVerification":null,"addIns":[],"api":{"acceptMappedClaims":null,"knownClientApplications":[],"requestedAccessTokenVersion":2,"oauth2PermissionScopes":[{"adminConsentDescription":"Access the Claude gateway as the signed-in user","adminConsentDisplayName":"Access Claude Gateway","id":"acf3124f-914b-41a3-9e93-1213070650ba","isEnabled":true,"type":"User","userConsentDescription":"Access the Claude gateway as you","userConsentDisplayName":"Access Claude Gateway","value":"access_as_user"}],"preAuthorizedApplications":[{"appId":"4afb71c2-88a3-4060-9410-a4e6f311e797","delegatedPermissionIds":["acf3124f-914b-41a3-9e93-1213070650ba"]}]},"appRoles":[{"allowedMemberTypes":["User"],"description":"Access to the Claude gateway","displayName":"Claude User","id":"6ac246dc-85b0-47ff-9b5f-d4cb555c92bc","isEnabled":true,"origin":"Application","value":"Claude.User"}],"info":{"logoUrl":null,"marketingUrl":null,"privacyStatementUrl":null,"supportUrl":null,"termsOfServiceUrl":null},"keyCredentials":[],"parentalControlSettings":{"countriesBlockedForMinors":[],"legalAgeGroupRule":"Allow"},"passwordCredentials":[],"publicClient":{"redirectUris":["http://localhost","http://127.0.0.1/callback"]},"requiredResourceAccess":[{"resourceAppId":"956ec5b2-919d-4254-9bf7-40514e38697b","resourceAccess":[{"id":"3bdf38e6-1fdb-4a85-b5cd-2cd6dca354bf","type":"Scope"}]}],"verifiedPublisher":{"displayName":null,"verifiedPublisherId":null,"addedDateTime":null},"web":{"homePageUrl":null,"logoutUrl":null,"redirectUris":[],"implicitGrantSettings":{"enableAccessTokenIssuance":false,"enableIdTokenIssuance":false},"redirectUriSettings":[]},"servicePrincipalLockConfiguration":{"isEnabled":true,"allProperties":true,"credentialsWithUsageVerify":null,"credentialsWithUsageSign":null,"identifierUris":null,"tokenEncryptionKeyId":null},"spa":{"redirectUris":[]}}
+INFO: Command ran in 1.193 seconds (init: 0.086, invoke: 1.107)
+[2026-10-12T09:31:07Z] DEBUG: Azure CLI: az ad app list
+INFO: Request URL: 'https://graph.microsoft.com/v1.0/applications?$filter=startswith%28displayName%2C%27Claude%20Desktop%20-%20claude-test-sombaner-gateway%27%29'
+INFO: Request method: 'GET'
+INFO: Request headers:
+INFO:     'User-Agent': 'python/3.13.16 (macOS-26.7-arm64-arm-64bit-Mach-O) AZURECLI/2.87.0 (HOMEBREW)'
+INFO:     'Accept-Encoding': 'gzip, deflate'
+INFO:     'Accept': '*/*'
+INFO:     'Connection': 'keep-alive'
+INFO:     'x-ms-client-request-id': '2650caa3-cfaa-4105-a448-78ca88102797'
+INFO:     'CommandName': 'ad app list'
+INFO:     'ParameterSetName': '--display-name -o --verbose'
+INFO:     'Authorization': 'Bearer eyJ0eXAiOiJKV...'
+INFO: Request body:
+INFO: None
+INFO: Response status: 200
+INFO: Response headers:
+INFO:     'Date': 'Mon, 12 Oct 2026 09:31:08 GMT'
+INFO:     'Content-Type': 'application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=false;charset=utf-8'
+INFO:     'Transfer-Encoding': 'chunked'
+INFO:     'Connection': 'keep-alive'
+INFO:     'Cache-Control': 'no-cache'
+INFO:     'Content-Encoding': 'gzip'
+INFO:     'Vary': 'Accept-Encoding'
+INFO:     'Strict-Transport-Security': 'max-age=31536000'
+INFO:     'request-id': '1279b60c-ce54-40db-b869-ac1e672a395b'
+INFO:     'client-request-id': '1279b60c-ce54-40db-b869-ac1e672a395b'
+INFO:     'x-ms-ags-diagnostic': '{"ServerInfo":{"DataCenter":"Central India","Slice":"E","Ring":"3","ScaleUnit":"000","RoleInstance":"PN1PEPF000190FC"}}'
+INFO:     'x-ms-resource-unit': '2'
+INFO:     'OData-Version': '4.0'
+INFO:     'X-Cache': 'CONFIG_NOCACHE'
+INFO: Response content:
+INFO: {"@odata.context":"https://graph.microsoft.com/v1.0/$metadata#applications","value":[{"id":"87e335c3-24c6-42a0-83e9-c58a76766943","deletedDateTime":null,"appId":"4afb71c2-88a3-4060-9410-a4e6f311e797","applicationTemplateId":null,"disabledByMicrosoftStatus":null,"createdByAppId":"04b07795-8ddb-461a-bbee-02f9e1bf7b46","createdDateTime":"2026-10-12T09:19:15Z","displayName":"Claude Desktop - claude-test-sombaner-gateway","description":null,"groupMembershipClaims":null,"identifierUris":[],"isDeviceOnlyAuthSupported":null,"isDisabled":null,"isFallbackPublicClient":true,"nativeAuthenticationApisEnabled":null,"notes":null,"publisherDomain":"fdpo.onmicrosoft.com","serviceManagementReference":null,"signInAudience":"AzureADMyOrg","tags":[],"tokenEncryptionKeyId":null,"uniqueName":null,"samlMetadataUrl":null,"defaultRedirectUri":null,"certification":null,"optionalClaims":null,"requestSignatureVerification":null,"addIns":[],"api":{"acceptMappedClaims":null,"knownClientApplications":[],"requestedAccessTokenVersion":2,"oauth2PermissionScopes":[],"preAuthorizedApplications":[]},"appRoles":[],"info":{"logoUrl":null,"marketingUrl":null,"privacyStatementUrl":null,"supportUrl":null,"termsOfServiceUrl":null},"keyCredentials":[],"parentalControlSettings":{"countriesBlockedForMinors":[],"legalAgeGroupRule":"Allow"},"passwordCredentials":[],"publicClient":{"redirectUris":["http://localhost","http://127.0.0.1/callback"]},"requiredResourceAccess":[{"resourceAppId":"eceef4d9-ea55-4806-8016-80e6388523e6","resourceAccess":[{"id":"acf3124f-914b-41a3-9e93-1213070650ba","type":"Scope"}]}],"verifiedPublisher":{"displayName":null,"verifiedPublisherId":null,"addedDateTime":null},"web":{"homePageUrl":null,"logoutUrl":null,"redirectUris":[],"implicitGrantSettings":{"enableAccessTokenIssuance":false,"enableIdTokenIssuance":false},"redirectUriSettings":[]},"servicePrincipalLockConfiguration":{"isEnabled":true,"allProperties":true,"credentialsWithUsageVerify":null,"credentialsWithUsageSign":null,"identifierUris":null,"tokenEncryptionKeyId":null},"spa":{"redirectUris":[]}}]}
+INFO: Command ran in 0.816 seconds (init: 0.089, invoke: 0.727)
+[2026-10-12T09:31:08Z] DEBUG: Azure CLI: az ad sp list
+INFO: Request URL: 'https://graph.microsoft.com/v1.0/servicePrincipals?$filter=appId%20eq%20%274afb71c2-88a3-4060-9410-a4e6f311e797%27'
+INFO: Request method: 'GET'
+INFO: Request headers:
+INFO:     'User-Agent': 'python/3.13.16 (macOS-26.7-arm64-arm-64bit-Mach-O) AZURECLI/2.87.0 (HOMEBREW)'
+INFO:     'Accept-Encoding': 'gzip, deflate'
+INFO:     'Accept': '*/*'
+INFO:     'Connection': 'keep-alive'
+INFO:     'x-ms-client-request-id': 'af339851-8a49-4482-a517-f63e57b68d5f'
+INFO:     'CommandName': 'ad sp list'
+INFO:     'ParameterSetName': '--filter -o --verbose'
+INFO:     'Authorization': 'Bearer eyJ0eXAiOiJKV...'
+INFO: Request body:
+INFO: None
+INFO: Response status: 200
+INFO: Response headers:
+INFO:     'Date': 'Mon, 12 Oct 2026 09:31:09 GMT'
+INFO:     'Content-Type': 'application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=false;charset=utf-8'
+INFO:     'Transfer-Encoding': 'chunked'
+INFO:     'Connection': 'keep-alive'
+INFO:     'Cache-Control': 'no-cache'
+INFO:     'Content-Encoding': 'gzip'
+INFO:     'Vary': 'Accept-Encoding'
+INFO:     'Strict-Transport-Security': 'max-age=31536000'
+INFO:     'request-id': '11feabb6-402b-470d-a975-4e788c008fb9'
+INFO:     'client-request-id': '11feabb6-402b-470d-a975-4e788c008fb9'
+INFO:     'x-ms-ags-diagnostic': '{"ServerInfo":{"DataCenter":"Central India","Slice":"E","Ring":"3","ScaleUnit":"002","RoleInstance":"PN2PEPF0000074F"}}'
+INFO:     'x-ms-resource-unit': '1'
+INFO:     'OData-Version': '4.0'
+INFO:     'X-Cache': 'CONFIG_NOCACHE'
+INFO: Response content:
+INFO: {"@odata.context":"https://graph.microsoft.com/v1.0/$metadata#servicePrincipals","value":[{"id":"831b00c7-8901-42e8-b843-f475e819a0e8","deletedDateTime":null,"accountEnabled":true,"alternativeNames":[],"appDisplayName":"Claude Desktop - claude-test-sombaner-gateway","appDescription":null,"appId":"4afb71c2-88a3-4060-9410-a4e6f311e797","applicationTemplateId":null,"appOwnerOrganizationId":"16b3c013-d300-468d-ac64-7eda0820b6d3","appRoleAssignmentRequired":false,"createdByAppId":"04b07795-8ddb-461a-bbee-02f9e1bf7b46","createdDateTime":"2026-10-12T09:19:21Z","description":null,"disabledByMicrosoftStatus":null,"displayName":"Claude Desktop - claude-test-sombaner-gateway","homepage":null,"isDisabled":null,"loginUrl":null,"logoutUrl":null,"notes":null,"notificationEmailAddresses":[],"preferredSingleSignOnMode":null,"preferredTokenSigningKeyThumbprint":null,"replyUrls":["http://127.0.0.1/callback","http://localhost"],"servicePrincipalNames":["4afb71c2-88a3-4060-9410-a4e6f311e797"],"servicePrincipalType":"Application","signInAudience":"AzureADMyOrg","tags":[],"tokenEncryptionKeyId":null,"samlSingleSignOnSettings":null,"addIns":[],"appRoles":[],"info":{"logoUrl":null,"marketingUrl":null,"privacyStatementUrl":null,"supportUrl":null,"termsOfServiceUrl":null},"keyCredentials":[],"oauth2PermissionScopes":[],"passwordCredentials":[],"resourceSpecificApplicationPermissions":[],"verifiedPublisher":{"displayName":null,"verifiedPublisherId":null,"addedDateTime":null}}]}
+INFO: Command ran in 0.656 seconds (init: 0.057, invoke: 0.599)
+[2026-10-12T09:31:09Z] DEBUG: Azure CLI: az rest --method PATCH
+INFO: Request URL: 'https://graph.microsoft.com/v1.0/applications/f88eb66b-d0d6-4abf-905a-9b50672e1190'
+INFO: Request method: 'PATCH'
+INFO: Request headers:
+INFO:     'User-Agent': 'python/3.13.16 (macOS-26.7-arm64-arm-64bit-Mach-O) AZURECLI/2.87.0 (HOMEBREW)'
+INFO:     'Accept-Encoding': 'gzip, deflate'
+INFO:     'Accept': '*/*'
+INFO:     'Connection': 'keep-alive'
+INFO:     'Content-Type': 'application/json'
+INFO:     'x-ms-client-request-id': '57d2eaed-c67e-4bd1-9e78-610151c43c5a'
+INFO:     'CommandName': 'rest'
+INFO:     'ParameterSetName': '--method --url --headers --body -o --verbose'
+INFO:     'Authorization': 'Bearer eyJ0eXAiOiJKV...'
+INFO:     'Content-Length': '633'
+INFO: Request body:
+INFO: {"api": {"acceptMappedClaims": null, "knownClientApplications": [], "oauth2PermissionScopes": [{"adminConsentDescription": "Access the Claude gateway as the signed-in user", "adminConsentDisplayName": "Access Claude Gateway", "id": "acf3124f-914b-41a3-9e93-1213070650ba", "isEnabled": true, "type": "User", "userConsentDescription": "Access the Claude gateway as you", "userConsentDisplayName": "Access Claude Gateway", "value": "access_as_user"}], "preAuthorizedApplications": [{"appId": "4afb71c2-88a3-4060-9410-a4e6f311e797", "delegatedPermissionIds": ["acf3124f-914b-41a3-9e93-1213070650ba"]}], "requestedAccessTokenVersion": 2}}
+INFO: Response status: 204
+INFO: Response headers:
+INFO:     'Date': 'Mon, 12 Oct 2026 09:31:11 GMT'
+INFO:     'Connection': 'keep-alive'
+INFO:     'Cache-Control': 'no-cache'
+INFO:     'Strict-Transport-Security': 'max-age=31536000'
+INFO:     'request-id': '10ee6206-c06e-4786-ab18-c27a8cb18315'
+INFO:     'client-request-id': '10ee6206-c06e-4786-ab18-c27a8cb18315'
+INFO:     'x-ms-ags-diagnostic': '{"ServerInfo":{"DataCenter":"Central India","Slice":"E","Ring":"3","ScaleUnit":"000","RoleInstance":"PN1PEPF000190F8"}}'
+INFO:     'x-ms-resource-unit': '1'
+INFO:     'X-Cache': 'CONFIG_NOCACHE'
+INFO: Response content:
+INFO: 
+INFO: Command ran in 2.204 seconds (init: 0.062, invoke: 2.142)
+Claude Desktop public client: 4afb71c2-88a3-4060-9410-a4e6f311e797
+[2026-10-12T09:31:11Z] DEBUG: Azure CLI: az resource list --resource-group
+INFO: Command ran in 1.820 seconds (init: 0.099, invoke: 1.722)
+[2026-10-12T09:31:13Z] DEBUG: Azure CLI: az extension show --name
+INFO: Command ran in 0.191 seconds (init: 0.087, invoke: 0.104)
+[2026-10-12T09:31:14Z] DEBUG: Azure CLI: az quota show --resource-name
+INFO: Command ran in 3.256 seconds (init: 0.042, invoke: 3.214)
+[2026-10-12T09:31:17Z] DEBUG: Azure CLI: az quota usage show
+INFO: Command ran in 2.502 seconds (init: 0.091, invoke: 2.411)
+{
+  "id": "/subscriptions/1c8300c9-08b4-4d88-b426-3868f3b963a1/providers/Microsoft.Web/locations/centralus/providers/Microsoft.Quota/usages/EP1",
+  "name": "EP1",
+  "properties": {
+    "isQuotaApplicable": true,
+    "name": {
+      "localizedValue": "EP1 VMs",
+      "value": "EP1"
+    },
+    "properties": {},
+    "unit": "Instances",
+    "usages": {
+      "usagesType": "Individual",
+      "value": 2
+    }
+  },
+  "type": "Microsoft.Quota/Usages"
+}
+Quota limit/usage are advisory; they do not guarantee free regional capacity or Cosmos availability.
+Review PRICES in snippets/15-load-pricing.py against your agreement, then set options.pricesReviewed=true.
+[2026-10-12T09:36:23Z] Streaming setup output to logs/claude-gateway-setup.log
+[2026-10-12T09:36:23Z] DEBUG: Debug logging enabled (Azure CLI verbose mode; raw shell tracing is disabled).
+Stage=all; subscription=1c8300c9-08b4-4d88-b426-3868f3b963a1; resource group=rg-test-infosys; APIM=claude-test-sombaner-gateway (centralus); budget=centralus; Cosmos=centralus
+Order: preflight -> bootstrap APIM only if absent -> tiers/DCR -> authenticated budget platform -> pricing permissions + both price stores -> publish Functions -> final APIM -> onboarding export -> optional smoke/reporting/reconciliation.
+Options: {"registerProviders":false,"checkEp1Quota":true,"pricesReviewed":true,"workbook":true,"summaryRule":false,"grafana":true,"reconcile":false,"smokeTest":false}
+StandardV2 APIM, EP1, Redis, Cosmos, Event Hub and optional Grafana incur charges. Budget accounting is asynchronous, fail-open and excludes cache writes.
+[2026-10-12T09:36:23Z] DEBUG: Azure CLI: az account show --subscription
+INFO: Command ran in 0.370 seconds (init: 0.143, invoke: 0.228)
+[2026-10-12T09:36:23Z] DEBUG: Azure CLI: az account set --subscription
+INFO: Command ran in 0.172 seconds (init: 0.052, invoke: 0.120)
+[2026-10-12T09:36:26Z] DEBUG: Azure CLI: az group show --name
+INFO: Command ran in 1.118 seconds (init: 0.067, invoke: 1.052)
+[2026-10-12T09:36:27Z] DEBUG: Azure CLI: az group show --name
+INFO: Command ran in 1.098 seconds (init: 0.063, invoke: 1.035)
+[2026-10-12T09:36:28Z] DEBUG: Azure CLI: az cognitiveservices account show
+INFO: Command ran in 1.269 seconds (init: 0.083, invoke: 1.187)
+[2026-10-12T09:36:30Z] DEBUG: Azure CLI: az resource show --ids
+INFO: Command ran in 1.816 seconds (init: 0.061, invoke: 1.756)
+[2026-10-12T09:36:32Z] DEBUG: Azure CLI: az cognitiveservices account deployment
+INFO: Command ran in 1.162 seconds (init: 0.064, invoke: 1.098)
+[2026-10-12T09:36:33Z] DEBUG: Azure CLI: az ad app show
+INFO: Request URL: 'https://graph.microsoft.com/v1.0/applications?$filter=appId%20eq%20%27eceef4d9-ea55-4806-8016-80e6388523e6%27'
+INFO: Request method: 'GET'
+INFO: Request headers:
+INFO:     'User-Agent': 'python/3.13.16 (macOS-26.7-arm64-arm-64bit-Mach-O) AZURECLI/2.87.0 (HOMEBREW)'
+INFO:     'Accept-Encoding': 'gzip, deflate'
+INFO:     'Accept': '*/*'
+INFO:     'Connection': 'keep-alive'
+INFO:     'x-ms-client-request-id': '9321fc94-4a3d-4d59-be8d-7f4d2d69dd2a'
+INFO:     'CommandName': 'ad app show'
+INFO:     'ParameterSetName': '--id -o --verbose'
+INFO:     'Authorization': 'Bearer eyJ0eXAiOiJKV...'
+INFO: Request body:
+INFO: None
+INFO: Response status: 200
+INFO: Response headers:
+INFO:     'Date': 'Mon, 12 Oct 2026 09:36:34 GMT'
+INFO:     'Content-Type': 'application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=false;charset=utf-8'
+INFO:     'Transfer-Encoding': 'chunked'
+INFO:     'Connection': 'keep-alive'
+INFO:     'Cache-Control': 'no-cache'
+INFO:     'Content-Encoding': 'gzip'
+INFO:     'Vary': 'Accept-Encoding'
+INFO:     'Strict-Transport-Security': 'max-age=31536000'
+INFO:     'request-id': 'd93e775e-93c4-4e24-9fe9-37725dda589e'
+INFO:     'client-request-id': 'd93e775e-93c4-4e24-9fe9-37725dda589e'
+INFO:     'x-ms-ags-diagnostic': '{"ServerInfo":{"DataCenter":"Central India","Slice":"E","Ring":"3","ScaleUnit":"001","RoleInstance":"PN3PEPF00000A6D"}}'
+INFO:     'x-ms-resource-unit': '2'
+INFO:     'OData-Version': '4.0'
+INFO:     'X-Cache': 'CONFIG_NOCACHE'
+INFO: Response content:
+INFO: {"@odata.context":"https://graph.microsoft.com/v1.0/$metadata#applications","value":[{"id":"f88eb66b-d0d6-4abf-905a-9b50672e1190","deletedDateTime":null,"appId":"eceef4d9-ea55-4806-8016-80e6388523e6","applicationTemplateId":null,"disabledByMicrosoftStatus":null,"createdByAppId":"04b07795-8ddb-461a-bbee-02f9e1bf7b46","createdDateTime":"2026-09-19T14:10:11Z","displayName":"Claude Desktop - sombaner-test-final-apim","description":null,"groupMembershipClaims":null,"identifierUris":["api://eceef4d9-ea55-4806-8016-80e6388523e6"],"isDeviceOnlyAuthSupported":null,"isDisabled":null,"isFallbackPublicClient":true,"nativeAuthenticationApisEnabled":null,"notes":null,"publisherDomain":"fdpo.onmicrosoft.com","serviceManagementReference":"e4847f9a-c5dc-435d-9d53-9b9c65b154e7","signInAudience":"AzureADMyOrg","tags":[],"tokenEncryptionKeyId":null,"uniqueName":null,"samlMetadataUrl":null,"defaultRedirectUri":null,"certification":null,"optionalClaims":null,"requestSignatureVerification":null,"addIns":[],"api":{"acceptMappedClaims":null,"knownClientApplications":[],"requestedAccessTokenVersion":2,"oauth2PermissionScopes":[{"adminConsentDescription":"Access the Claude gateway as the signed-in user","adminConsentDisplayName":"Access Claude Gateway","id":"acf3124f-914b-41a3-9e93-1213070650ba","isEnabled":true,"type":"User","userConsentDescription":"Access the Claude gateway as you","userConsentDisplayName":"Access Claude Gateway","value":"access_as_user"}],"preAuthorizedApplications":[{"appId":"4afb71c2-88a3-4060-9410-a4e6f311e797","delegatedPermissionIds":["acf3124f-914b-41a3-9e93-1213070650ba"]}]},"appRoles":[{"allowedMemberTypes":["User"],"description":"Access to the Claude gateway","displayName":"Claude User","id":"6ac246dc-85b0-47ff-9b5f-d4cb555c92bc","isEnabled":true,"origin":"Application","value":"Claude.User"}],"info":{"logoUrl":null,"marketingUrl":null,"privacyStatementUrl":null,"supportUrl":null,"termsOfServiceUrl":null},"keyCredentials":[],"parentalControlSettings":{"countriesBlockedForMinors":[],"legalAgeGroupRule":"Allow"},"passwordCredentials":[],"publicClient":{"redirectUris":["http://localhost","http://127.0.0.1/callback"]},"requiredResourceAccess":[{"resourceAppId":"956ec5b2-919d-4254-9bf7-40514e38697b","resourceAccess":[{"id":"3bdf38e6-1fdb-4a85-b5cd-2cd6dca354bf","type":"Scope"}]}],"verifiedPublisher":{"displayName":null,"verifiedPublisherId":null,"addedDateTime":null},"web":{"homePageUrl":null,"logoutUrl":null,"redirectUris":[],"implicitGrantSettings":{"enableAccessTokenIssuance":false,"enableIdTokenIssuance":false},"redirectUriSettings":[]},"servicePrincipalLockConfiguration":{"isEnabled":true,"allProperties":true,"credentialsWithUsageVerify":null,"credentialsWithUsageSign":null,"identifierUris":null,"tokenEncryptionKeyId":null},"spa":{"redirectUris":[]}}]}
+INFO: Request URL: 'https://graph.microsoft.com/v1.0/applications/f88eb66b-d0d6-4abf-905a-9b50672e1190'
+INFO: Request method: 'GET'
+INFO: Request headers:
+INFO:     'User-Agent': 'python/3.13.16 (macOS-26.7-arm64-arm-64bit-Mach-O) AZURECLI/2.87.0 (HOMEBREW)'
+INFO:     'Accept-Encoding': 'gzip, deflate'
+INFO:     'Accept': '*/*'
+INFO:     'Connection': 'keep-alive'
+INFO:     'x-ms-client-request-id': 'd0ae7bc9-422a-4a10-b17e-052fd24203c3'
+INFO:     'CommandName': 'ad app show'
+INFO:     'ParameterSetName': '--id -o --verbose'
+INFO:     'Authorization': 'Bearer eyJ0eXAiOiJKV...'
+INFO: Request body:
+INFO: None
+INFO: Response status: 200
+INFO: Response headers:
+INFO:     'Date': 'Mon, 12 Oct 2026 09:36:35 GMT'
+INFO:     'Content-Type': 'application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=false;charset=utf-8'
+INFO:     'Transfer-Encoding': 'chunked'
+INFO:     'Connection': 'keep-alive'
+INFO:     'Cache-Control': 'no-cache'
+INFO:     'Content-Encoding': 'gzip'
+INFO:     'Vary': 'Accept-Encoding'
+INFO:     'Strict-Transport-Security': 'max-age=31536000'
+INFO:     'request-id': 'aab571c4-ec36-40a1-84e2-d1ff70655c90'
+INFO:     'client-request-id': 'aab571c4-ec36-40a1-84e2-d1ff70655c90'
+INFO:     'x-ms-ags-diagnostic': '{"ServerInfo":{"DataCenter":"Central India","Slice":"E","Ring":"3","ScaleUnit":"001","RoleInstance":"PN3PEPF00000A6D"}}'
+INFO:     'x-ms-resource-unit': '1'
+INFO:     'OData-Version': '4.0'
+INFO:     'X-Cache': 'CONFIG_NOCACHE'
+INFO: Response content:
+INFO: {"@odata.context":"https://graph.microsoft.com/v1.0/$metadata#applications/$entity","id":"f88eb66b-d0d6-4abf-905a-9b50672e1190","deletedDateTime":null,"appId":"eceef4d9-ea55-4806-8016-80e6388523e6","applicationTemplateId":null,"disabledByMicrosoftStatus":null,"createdByAppId":"04b07795-8ddb-461a-bbee-02f9e1bf7b46","createdDateTime":"2026-09-19T14:10:11Z","displayName":"Claude Desktop - sombaner-test-final-apim","description":null,"groupMembershipClaims":null,"identifierUris":["api://eceef4d9-ea55-4806-8016-80e6388523e6"],"isDeviceOnlyAuthSupported":null,"isDisabled":null,"isFallbackPublicClient":true,"nativeAuthenticationApisEnabled":null,"notes":null,"publisherDomain":"fdpo.onmicrosoft.com","serviceManagementReference":"e4847f9a-c5dc-435d-9d53-9b9c65b154e7","signInAudience":"AzureADMyOrg","tags":[],"tokenEncryptionKeyId":null,"uniqueName":null,"samlMetadataUrl":null,"defaultRedirectUri":null,"certification":null,"optionalClaims":null,"requestSignatureVerification":null,"addIns":[],"api":{"acceptMappedClaims":null,"knownClientApplications":[],"requestedAccessTokenVersion":2,"oauth2PermissionScopes":[{"adminConsentDescription":"Access the Claude gateway as the signed-in user","adminConsentDisplayName":"Access Claude Gateway","id":"acf3124f-914b-41a3-9e93-1213070650ba","isEnabled":true,"type":"User","userConsentDescription":"Access the Claude gateway as you","userConsentDisplayName":"Access Claude Gateway","value":"access_as_user"}],"preAuthorizedApplications":[{"appId":"4afb71c2-88a3-4060-9410-a4e6f311e797","delegatedPermissionIds":["acf3124f-914b-41a3-9e93-1213070650ba"]}]},"appRoles":[{"allowedMemberTypes":["User"],"description":"Access to the Claude gateway","displayName":"Claude User","id":"6ac246dc-85b0-47ff-9b5f-d4cb555c92bc","isEnabled":true,"origin":"Application","value":"Claude.User"}],"info":{"logoUrl":null,"marketingUrl":null,"privacyStatementUrl":null,"supportUrl":null,"termsOfServiceUrl":null},"keyCredentials":[],"parentalControlSettings":{"countriesBlockedForMinors":[],"legalAgeGroupRule":"Allow"},"passwordCredentials":[],"publicClient":{"redirectUris":["http://localhost","http://127.0.0.1/callback"]},"requiredResourceAccess":[{"resourceAppId":"956ec5b2-919d-4254-9bf7-40514e38697b","resourceAccess":[{"id":"3bdf38e6-1fdb-4a85-b5cd-2cd6dca354bf","type":"Scope"}]}],"verifiedPublisher":{"displayName":null,"verifiedPublisherId":null,"addedDateTime":null},"web":{"homePageUrl":null,"logoutUrl":null,"redirectUris":[],"implicitGrantSettings":{"enableAccessTokenIssuance":false,"enableIdTokenIssuance":false},"redirectUriSettings":[]},"servicePrincipalLockConfiguration":{"isEnabled":true,"allProperties":true,"credentialsWithUsageVerify":null,"credentialsWithUsageSign":null,"identifierUris":null,"tokenEncryptionKeyId":null},"spa":{"redirectUris":[]}}
+INFO: Command ran in 1.231 seconds (init: 0.066, invoke: 1.165)
+[2026-10-12T09:36:35Z] DEBUG: Azure CLI: az ad app list
+INFO: Request URL: 'https://graph.microsoft.com/v1.0/applications?$filter=startswith%28displayName%2C%27Claude%20Desktop%20-%20claude-test-sombaner-gateway%27%29'
+INFO: Request method: 'GET'
+INFO: Request headers:
+INFO:     'User-Agent': 'python/3.13.16 (macOS-26.7-arm64-arm-64bit-Mach-O) AZURECLI/2.87.0 (HOMEBREW)'
+INFO:     'Accept-Encoding': 'gzip, deflate'
+INFO:     'Accept': '*/*'
+INFO:     'Connection': 'keep-alive'
+INFO:     'x-ms-client-request-id': '08c8cd62-beac-4ba6-88d2-51dd3dfb0dfb'
+INFO:     'CommandName': 'ad app list'
+INFO:     'ParameterSetName': '--display-name -o --verbose'
+INFO:     'Authorization': 'Bearer eyJ0eXAiOiJKV...'
+INFO: Request body:
+INFO: None
+INFO: Response status: 200
+INFO: Response headers:
+INFO:     'Date': 'Mon, 12 Oct 2026 09:36:36 GMT'
+INFO:     'Content-Type': 'application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=false;charset=utf-8'
+INFO:     'Transfer-Encoding': 'chunked'
+INFO:     'Connection': 'keep-alive'
+INFO:     'Cache-Control': 'no-cache'
+INFO:     'Content-Encoding': 'gzip'
+INFO:     'Vary': 'Accept-Encoding'
+INFO:     'Strict-Transport-Security': 'max-age=31536000'
+INFO:     'request-id': 'd402be41-889c-44b5-9430-c97260e86ac6'
+INFO:     'client-request-id': 'd402be41-889c-44b5-9430-c97260e86ac6'
+INFO:     'x-ms-ags-diagnostic': '{"ServerInfo":{"DataCenter":"Central India","Slice":"E","Ring":"3","ScaleUnit":"002","RoleInstance":"PN2PEPF0000074F"}}'
+INFO:     'x-ms-resource-unit': '2'
+INFO:     'OData-Version': '4.0'
+INFO:     'X-Cache': 'CONFIG_NOCACHE'
+INFO: Response content:
+INFO: {"@odata.context":"https://graph.microsoft.com/v1.0/$metadata#applications","value":[{"id":"87e335c3-24c6-42a0-83e9-c58a76766943","deletedDateTime":null,"appId":"4afb71c2-88a3-4060-9410-a4e6f311e797","applicationTemplateId":null,"disabledByMicrosoftStatus":null,"createdByAppId":"04b07795-8ddb-461a-bbee-02f9e1bf7b46","createdDateTime":"2026-10-12T09:19:15Z","displayName":"Claude Desktop - claude-test-sombaner-gateway","description":null,"groupMembershipClaims":null,"identifierUris":[],"isDeviceOnlyAuthSupported":null,"isDisabled":null,"isFallbackPublicClient":true,"nativeAuthenticationApisEnabled":null,"notes":null,"publisherDomain":"fdpo.onmicrosoft.com","serviceManagementReference":null,"signInAudience":"AzureADMyOrg","tags":[],"tokenEncryptionKeyId":null,"uniqueName":null,"samlMetadataUrl":null,"defaultRedirectUri":null,"certification":null,"optionalClaims":null,"requestSignatureVerification":null,"addIns":[],"api":{"acceptMappedClaims":null,"knownClientApplications":[],"requestedAccessTokenVersion":2,"oauth2PermissionScopes":[],"preAuthorizedApplications":[]},"appRoles":[],"info":{"logoUrl":null,"marketingUrl":null,"privacyStatementUrl":null,"supportUrl":null,"termsOfServiceUrl":null},"keyCredentials":[],"parentalControlSettings":{"countriesBlockedForMinors":[],"legalAgeGroupRule":"Allow"},"passwordCredentials":[],"publicClient":{"redirectUris":["http://localhost","http://127.0.0.1/callback"]},"requiredResourceAccess":[{"resourceAppId":"eceef4d9-ea55-4806-8016-80e6388523e6","resourceAccess":[{"id":"acf3124f-914b-41a3-9e93-1213070650ba","type":"Scope"}]}],"verifiedPublisher":{"displayName":null,"verifiedPublisherId":null,"addedDateTime":null},"web":{"homePageUrl":null,"logoutUrl":null,"redirectUris":[],"implicitGrantSettings":{"enableAccessTokenIssuance":false,"enableIdTokenIssuance":false},"redirectUriSettings":[]},"servicePrincipalLockConfiguration":{"isEnabled":true,"allProperties":true,"credentialsWithUsageVerify":null,"credentialsWithUsageSign":null,"identifierUris":null,"tokenEncryptionKeyId":null},"spa":{"redirectUris":[]}}]}
+INFO: Command ran in 0.883 seconds (init: 0.077, invoke: 0.805)
+[2026-10-12T09:36:36Z] DEBUG: Azure CLI: az ad sp list
+INFO: Request URL: 'https://graph.microsoft.com/v1.0/servicePrincipals?$filter=appId%20eq%20%274afb71c2-88a3-4060-9410-a4e6f311e797%27'
+INFO: Request method: 'GET'
+INFO: Request headers:
+INFO:     'User-Agent': 'python/3.13.16 (macOS-26.7-arm64-arm-64bit-Mach-O) AZURECLI/2.87.0 (HOMEBREW)'
+INFO:     'Accept-Encoding': 'gzip, deflate'
+INFO:     'Accept': '*/*'
+INFO:     'Connection': 'keep-alive'
+INFO:     'x-ms-client-request-id': '81a3ecbc-8371-48af-b76c-b06195ecdd30'
+INFO:     'CommandName': 'ad sp list'
+INFO:     'ParameterSetName': '--filter -o --verbose'
+INFO:     'Authorization': 'Bearer eyJ0eXAiOiJKV...'
+INFO: Request body:
+INFO: None
+INFO: Response status: 200
+INFO: Response headers:
+INFO:     'Date': 'Mon, 12 Oct 2026 09:36:37 GMT'
+INFO:     'Content-Type': 'application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=false;charset=utf-8'
+INFO:     'Transfer-Encoding': 'chunked'
+INFO:     'Connection': 'keep-alive'
+INFO:     'Cache-Control': 'no-cache'
+INFO:     'Content-Encoding': 'gzip'
+INFO:     'Vary': 'Accept-Encoding'
+INFO:     'Strict-Transport-Security': 'max-age=31536000'
+INFO:     'request-id': '0535c6e3-95cc-46a9-9a48-c4e4a214f1b5'
+INFO:     'client-request-id': '0535c6e3-95cc-46a9-9a48-c4e4a214f1b5'
+INFO:     'x-ms-ags-diagnostic': '{"ServerInfo":{"DataCenter":"Central India","Slice":"E","Ring":"3","ScaleUnit":"002","RoleInstance":"PN2PEPF0000074F"}}'
+INFO:     'x-ms-resource-unit': '1'
+INFO:     'OData-Version': '4.0'
+INFO:     'X-Cache': 'CONFIG_NOCACHE'
+INFO: Response content:
+INFO: {"@odata.context":"https://graph.microsoft.com/v1.0/$metadata#servicePrincipals","value":[{"id":"831b00c7-8901-42e8-b843-f475e819a0e8","deletedDateTime":null,"accountEnabled":true,"alternativeNames":[],"appDisplayName":"Claude Desktop - claude-test-sombaner-gateway","appDescription":null,"appId":"4afb71c2-88a3-4060-9410-a4e6f311e797","applicationTemplateId":null,"appOwnerOrganizationId":"16b3c013-d300-468d-ac64-7eda0820b6d3","appRoleAssignmentRequired":false,"createdByAppId":"04b07795-8ddb-461a-bbee-02f9e1bf7b46","createdDateTime":"2026-10-12T09:19:21Z","description":null,"disabledByMicrosoftStatus":null,"displayName":"Claude Desktop - claude-test-sombaner-gateway","homepage":null,"isDisabled":null,"loginUrl":null,"logoutUrl":null,"notes":null,"notificationEmailAddresses":[],"preferredSingleSignOnMode":null,"preferredTokenSigningKeyThumbprint":null,"replyUrls":["http://127.0.0.1/callback","http://localhost"],"servicePrincipalNames":["4afb71c2-88a3-4060-9410-a4e6f311e797"],"servicePrincipalType":"Application","signInAudience":"AzureADMyOrg","tags":[],"tokenEncryptionKeyId":null,"samlSingleSignOnSettings":null,"addIns":[],"appRoles":[],"info":{"logoUrl":null,"marketingUrl":null,"privacyStatementUrl":null,"supportUrl":null,"termsOfServiceUrl":null},"keyCredentials":[],"oauth2PermissionScopes":[],"passwordCredentials":[],"resourceSpecificApplicationPermissions":[],"verifiedPublisher":{"displayName":null,"verifiedPublisherId":null,"addedDateTime":null}}]}
+INFO: Command ran in 0.814 seconds (init: 0.073, invoke: 0.740)
+[2026-10-12T09:36:37Z] DEBUG: Azure CLI: az rest --method PATCH
+INFO: Request URL: 'https://graph.microsoft.com/v1.0/applications/f88eb66b-d0d6-4abf-905a-9b50672e1190'
+INFO: Request method: 'PATCH'
+INFO: Request headers:
+INFO:     'User-Agent': 'python/3.13.16 (macOS-26.7-arm64-arm-64bit-Mach-O) AZURECLI/2.87.0 (HOMEBREW)'
+INFO:     'Accept-Encoding': 'gzip, deflate'
+INFO:     'Accept': '*/*'
+INFO:     'Connection': 'keep-alive'
+INFO:     'Content-Type': 'application/json'
+INFO:     'x-ms-client-request-id': '27f549c1-4b62-4277-8135-429f19db1b0c'
+INFO:     'CommandName': 'rest'
+INFO:     'ParameterSetName': '--method --url --headers --body -o --verbose'
+INFO:     'Authorization': 'Bearer eyJ0eXAiOiJKV...'
+INFO:     'Content-Length': '633'
+INFO: Request body:
+INFO: {"api": {"acceptMappedClaims": null, "knownClientApplications": [], "oauth2PermissionScopes": [{"adminConsentDescription": "Access the Claude gateway as the signed-in user", "adminConsentDisplayName": "Access Claude Gateway", "id": "acf3124f-914b-41a3-9e93-1213070650ba", "isEnabled": true, "type": "User", "userConsentDescription": "Access the Claude gateway as you", "userConsentDisplayName": "Access Claude Gateway", "value": "access_as_user"}], "preAuthorizedApplications": [{"appId": "4afb71c2-88a3-4060-9410-a4e6f311e797", "delegatedPermissionIds": ["acf3124f-914b-41a3-9e93-1213070650ba"]}], "requestedAccessTokenVersion": 2}}
+INFO: Response status: 204
+INFO: Response headers:
+INFO:     'Date': 'Mon, 12 Oct 2026 09:36:39 GMT'
+INFO:     'Connection': 'keep-alive'
+INFO:     'Cache-Control': 'no-cache'
+INFO:     'Strict-Transport-Security': 'max-age=31536000'
+INFO:     'request-id': '690e23ed-8417-4b0c-a152-951938b6d89c'
+INFO:     'client-request-id': '690e23ed-8417-4b0c-a152-951938b6d89c'
+INFO:     'x-ms-ags-diagnostic': '{"ServerInfo":{"DataCenter":"Central India","Slice":"E","Ring":"3","ScaleUnit":"002","RoleInstance":"PN2PEPF0000074F"}}'
+INFO:     'x-ms-resource-unit': '1'
+INFO:     'X-Cache': 'CONFIG_NOCACHE'
+INFO: Response content:
+INFO: 
+INFO: Command ran in 2.101 seconds (init: 0.063, invoke: 2.038)
+Claude Desktop public client: 4afb71c2-88a3-4060-9410-a4e6f311e797
+[2026-10-12T09:36:39Z] DEBUG: Azure CLI: az resource list --resource-group
+INFO: Command ran in 2.014 seconds (init: 0.070, invoke: 1.944)
+[2026-10-12T09:36:42Z] DEBUG: Azure CLI: az extension show --name
+INFO: Command ran in 0.179 seconds (init: 0.080, invoke: 0.099)
+[2026-10-12T09:36:42Z] DEBUG: Azure CLI: az quota show --resource-name
+INFO: Command ran in 2.386 seconds (init: 0.042, invoke: 2.344)
+[2026-10-12T09:36:44Z] DEBUG: Azure CLI: az quota usage show
+INFO: Command ran in 2.269 seconds (init: 0.102, invoke: 2.167)
+{
+  "id": "/subscriptions/1c8300c9-08b4-4d88-b426-3868f3b963a1/providers/Microsoft.Web/locations/centralus/providers/Microsoft.Quota/usages/EP1",
+  "name": "EP1",
+  "properties": {
+    "isQuotaApplicable": true,
+    "name": {
+      "localizedValue": "EP1 VMs",
+      "value": "EP1"
+    },
+    "properties": {},
+    "unit": "Instances",
+    "usages": {
+      "usagesType": "Individual",
+      "value": 2
+    }
+  },
+  "type": "Microsoft.Quota/Usages"
+}
+Quota limit/usage are advisory; they do not guarantee free regional capacity or Cosmos availability.
+Deploying 04-apim-gateway in rg-test-infosys
+[2026-10-12T09:37:05Z] DEBUG: Azure CLI: az deployment group create
+INFO: Command ran in 159.024 seconds (init: 0.068, invoke: 158.956)
+[2026-10-12T09:39:44Z] DEBUG: Azure CLI: az apim show --name
+INFO: Command ran in 1.834 seconds (init: 0.120, invoke: 1.714)
+[2026-10-12T09:39:46Z] DEBUG: Azure CLI: az ad sp show
+INFO: Request URL: 'https://graph.microsoft.com/v1.0/servicePrincipals?$filter=servicePrincipalNames%2Fany%28c%3Ac%20eq%20%27ac776634-31c4-491c-9deb-392bbb160c00%27%29'
+INFO: Request method: 'GET'
+INFO: Request headers:
+INFO:     'User-Agent': 'python/3.13.16 (macOS-26.7-arm64-arm-64bit-Mach-O) AZURECLI/2.87.0 (HOMEBREW)'
+INFO:     'Accept-Encoding': 'gzip, deflate'
+INFO:     'Accept': '*/*'
+INFO:     'Connection': 'keep-alive'
+INFO:     'x-ms-client-request-id': '28e7dac4-1ecb-4cce-9906-2ec9f9d13346'
+INFO:     'CommandName': 'ad sp show'
+INFO:     'ParameterSetName': '--id --query -o --verbose'
+INFO:     'Authorization': 'Bearer eyJ0eXAiOiJKV...'
+INFO: Request body:
+INFO: None
+INFO: Response status: 200
+INFO: Response headers:
+INFO:     'Date': 'Mon, 12 Oct 2026 09:39:47 GMT'
+INFO:     'Content-Type': 'application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=false;charset=utf-8'
+INFO:     'Transfer-Encoding': 'chunked'
+INFO:     'Connection': 'keep-alive'
+INFO:     'Cache-Control': 'no-cache'
+INFO:     'Content-Encoding': 'gzip'
+INFO:     'Vary': 'Accept-Encoding'
+INFO:     'Strict-Transport-Security': 'max-age=31536000'
+INFO:     'request-id': '5e8a39ee-90d0-46b5-b0fd-e22a434e53eb'
+INFO:     'client-request-id': '5e8a39ee-90d0-46b5-b0fd-e22a434e53eb'
+INFO:     'x-ms-ags-diagnostic': '{"ServerInfo":{"DataCenter":"Central India","Slice":"E","Ring":"3","ScaleUnit":"001","RoleInstance":"PN3PEPF00000A71"}}'
+INFO:     'x-ms-resource-unit': '1'
+INFO:     'OData-Version': '4.0'
+INFO:     'X-Cache': 'CONFIG_NOCACHE'
+INFO: Response content:
+INFO: {"@odata.context":"https://graph.microsoft.com/v1.0/$metadata#servicePrincipals","value":[]}
+INFO: Request URL: 'https://graph.microsoft.com/v1.0/servicePrincipals/ac776634-31c4-491c-9deb-392bbb160c00'
+INFO: Request method: 'GET'
+INFO: Request headers:
+INFO:     'User-Agent': 'python/3.13.16 (macOS-26.7-arm64-arm-64bit-Mach-O) AZURECLI/2.87.0 (HOMEBREW)'
+INFO:     'Accept-Encoding': 'gzip, deflate'
+INFO:     'Accept': '*/*'
+INFO:     'Connection': 'keep-alive'
+INFO:     'x-ms-client-request-id': 'b0a55cbc-8d17-4efb-a829-4a51c79ec7cd'
+INFO:     'CommandName': 'ad sp show'
+INFO:     'ParameterSetName': '--id --query -o --verbose'
+INFO:     'Authorization': 'Bearer eyJ0eXAiOiJKV...'
+INFO: Request body:
+INFO: None
+INFO: Response status: 200
+INFO: Response headers:
+INFO:     'Date': 'Mon, 12 Oct 2026 09:39:47 GMT'
+INFO:     'Content-Type': 'application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=false;charset=utf-8'
+INFO:     'Transfer-Encoding': 'chunked'
+INFO:     'Connection': 'keep-alive'
+INFO:     'Cache-Control': 'no-cache'
+INFO:     'Content-Encoding': 'gzip'
+INFO:     'Vary': 'Accept-Encoding'
+INFO:     'Strict-Transport-Security': 'max-age=31536000'
+INFO:     'request-id': '004dab05-121f-451b-a122-c2107520a80d'
+INFO:     'client-request-id': '004dab05-121f-451b-a122-c2107520a80d'
+INFO:     'x-ms-ags-diagnostic': '{"ServerInfo":{"DataCenter":"Central India","Slice":"E","Ring":"3","ScaleUnit":"001","RoleInstance":"PN3PEPF00000A71"}}'
+INFO:     'x-ms-resource-unit': '1'
+INFO:     'OData-Version': '4.0'
+INFO:     'X-Cache': 'CONFIG_NOCACHE'
+INFO: Response content:
+INFO: {"@odata.context":"https://graph.microsoft.com/v1.0/$metadata#servicePrincipals/$entity","id":"ac776634-31c4-491c-9deb-392bbb160c00","deletedDateTime":null,"accountEnabled":true,"alternativeNames":["isExplicit=False","/subscriptions/1c8300c9-08b4-4d88-b426-3868f3b963a1/resourcegroups/rg-test-infosys/providers/Microsoft.ApiManagement/service/claude-test-sombaner-gateway"],"appDisplayName":null,"appDescription":null,"appId":"c4738c37-f1dc-4783-a78e-598647404aec","applicationTemplateId":null,"appOwnerOrganizationId":null,"appRoleAssignmentRequired":false,"createdByAppId":"ef5d5c69-a5df-46bb-acaf-426f161a21a2","createdDateTime":"2026-10-12T09:37:11Z","description":null,"disabledByMicrosoftStatus":null,"displayName":"claude-test-sombaner-gateway","homepage":null,"isDisabled":null,"loginUrl":null,"logoutUrl":null,"notes":null,"notificationEmailAddresses":[],"preferredSingleSignOnMode":null,"preferredTokenSigningKeyThumbprint":null,"replyUrls":[],"servicePrincipalNames":["c4738c37-f1dc-4783-a78e-598647404aec","https://identity.azure.net/DY6Xu+ZJ19+oUnRvw6kHKzZ9eg+J9P2WSV20I+wll9g="],"servicePrincipalType":"ManagedIdentity","signInAudience":null,"tags":[],"tokenEncryptionKeyId":null,"info":null,"samlSingleSignOnSettings":null,"addIns":[],"appRoles":[],"keyCredentials":[{"customKeyIdentifier":"6B1D02A72262B78877E67536666D97D0482B4AAC","displayName":"CN=c4738c37-f1dc-4783-a78e-598647404aec","endDateTime":"2027-01-10T09:32:00Z","key":null,"keyId":"612e8d15-17b1-4f3d-a162-197ca4659e5a","startDateTime":"2026-10-12T09:32:00Z","type":"AsymmetricX509Cert","usage":"Verify"}],"oauth2PermissionScopes":[],"passwordCredentials":[],"resourceSpecificApplicationPermissions":[],"verifiedPublisher":{"displayName":null,"verifiedPublisherId":null,"addedDateTime":null}}
+INFO: Command ran in 1.204 seconds (init: 0.062, invoke: 1.142)
+Deploying 14-claude-tiers in rg-test-infosys
+[2026-10-12T09:39:47Z] DEBUG: Azure CLI: az deployment group create
+INFO: Command ran in 35.285 seconds (init: 0.065, invoke: 35.220)
+Deploying 16-budget-platform in rg-test-infosys
+[2026-10-12T09:40:23Z] DEBUG: Azure CLI: az deployment group create
