@@ -10,6 +10,133 @@ const tenant = '11111111-1111-4111-8111-111111111111';
 const audience = '22222222-2222-4222-8222-222222222222';
 const desktopClient = '44444444-4444-4444-8444-444444444444';
 const gatewayScope = '55555555-5555-4555-8555-555555555555';
+for (const platform of ['bash', 'pwsh']) {
+  test(`${platform}: standalone gateway registration creates, preserves, verifies and rejects unsafe targets`, () => {
+    const directory = mkdtempSync(join(tmpdir(), 'gateway registration '));
+    const statePath = join(directory, 'state.json');
+    const mock = join(directory, 'az');
+    const suffix = platform === 'bash' ? 'sh' : 'ps1';
+    const name = "Claude Gateway - O'Brien";
+    const initial = {tenant, audience, name, apps: [], sp: null, calls: []};
+    const save = state => writeFileSync(statePath, JSON.stringify(state));
+    const load = () => JSON.parse(readFileSync(statePath, 'utf8'));
+    const invoke = (extra = []) => spawnSync(platform, [
+      ...(platform === 'pwsh' ? ['-NoProfile', '-File'] : []),
+      join(root, `admin/create-claude-gateway-app.${suffix}`),
+      ...(platform === 'bash' ? ['--tenant-id', tenant, '--display-name', name] : ['-TenantId', tenant, '-DisplayName', name]),
+      ...extra
+    ], {encoding: 'utf8', timeout: 15000, env: {...process.env, PATH: `${directory}:${process.env.PATH}`, GATEWAY_TEST_STATE: statePath}});
+    const yes = platform === 'bash' ? '--yes' : '-Yes';
+    try {
+      writeFileSync(mock, `#!/usr/bin/env node
+const fs = require('node:fs');
+const path = process.env.GATEWAY_TEST_STATE;
+const state = JSON.parse(fs.readFileSync(path, 'utf8'));
+const args = process.argv.slice(2);
+const option = name => args[args.indexOf(name) + 1];
+const operation = args.slice(0, 3).join(' ');
+state.calls.push(args);
+fs.writeFileSync(path, JSON.stringify(state));
+const fail = message => { console.error(message); process.exit(1); };
+if (state.fail) fail('Simulated Azure failure');
+let result;
+if (operation === 'account show -o') result = {tenantId: state.tenant};
+else if (operation === 'ad app list') result = state.apps;
+else if (operation === 'ad app show') {
+  result = state.apps.find(app => app.appId === option('--id'));
+  if (!result) fail('Application not found');
+}
+else if (operation === 'ad app create') {
+  if (option('--sign-in-audience') !== 'AzureADMyOrg') fail('Not single tenant');
+  result = {appId: state.audience, id: 'application-object', displayName: option('--display-name'), signInAudience: 'AzureADMyOrg', api: {}, appRoles: [], identifierUris: []};
+  state.apps.push(result);
+}
+else if (args[0] === 'rest' && option('--method') === 'PATCH') {
+  if (option('--url') !== 'https://graph.microsoft.com/v1.0/applications/application-object') fail('Wrong application endpoint');
+  const patch = JSON.parse(option('--body'));
+  if (!state.ignorePatch) Object.assign(state.apps[0], patch);
+}
+else if (operation === 'ad sp list') {
+  if (option('--filter') !== "appId eq '" + state.audience + "'") fail('Wrong service principal filter');
+  result = state.sp ? [state.sp] : [];
+}
+else if (operation === 'ad sp create') {
+  if (option('--id') !== state.audience) fail('Wrong service principal application');
+  result = state.sp = {id: 'service-principal-object', appId: state.audience};
+}
+else if (operation === 'ad sp show') {
+  if (option('--id') !== state.sp?.id) fail('Wrong service principal object');
+  result = state.sp;
+}
+else fail('Unexpected Azure operation: ' + args.join(' '));
+fs.writeFileSync(path, JSON.stringify(state));
+if (result !== undefined) console.log(JSON.stringify(result));
+`);
+      chmodSync(mock, 0o755);
+      save(initial);
+      let result = invoke([platform === 'bash' ? '--dry-run' : '-DryRun']);
+      assert.equal(result.status, 0, result.stderr);
+      assert.deepEqual(load().calls, [], 'dry run must not call Azure');
+      result = invoke();
+      assert.notEqual(result.status, 0, 'writes require authorization');
+      assert.deepEqual(load().calls, []);
+      result = invoke([yes]);
+      assert.equal(result.status, 0, result.stderr);
+      const output = JSON.parse(result.stdout);
+      assert.equal(output.gatewayAudience, audience);
+      assert.equal(output.tokenResource, `api://${audience}`);
+      assert.equal(output.servicePrincipalObjectId, 'service-principal-object');
+      const created = load();
+      assert.equal(created.apps.length, 1);
+      assert.equal(created.apps[0].api.requestedAccessTokenVersion, 2);
+      assert.equal(created.apps[0].api.oauth2PermissionScopes[0].value, 'access_as_user');
+      assert.match(created.apps[0].api.oauth2PermissionScopes[0].id, /^[0-9a-f-]{36}$/);
+      assert.deepEqual(output.roles.map(role => role.value).sort(),
+        ['Claude.User', 'Claude.Tier.Pro', 'Claude.Tier.Basic', 'Claude.Suspended'].sort());
+      for (const role of output.roles) {
+        assert.deepEqual(role.allowedMemberTypes, ['User']);
+        assert.equal(role.isEnabled, true);
+        assert.match(role.id, /^[0-9a-f-]{36}$/);
+      }
+      const app = created.apps[0];
+      app.appRoles[0].isEnabled = false;
+      app.appRoles.push({id: 'other-role', value: 'Unrelated.Role', allowedMemberTypes: ['Application'], isEnabled: true});
+      app.api.oauth2PermissionScopes.push({id: 'other-scope', value: 'other_scope', isEnabled: true});
+      app.api.preAuthorizedApplications = [{appId: desktopClient, delegatedPermissionIds: [gatewayScope]}];
+      app.identifierUris.push('api://existing-uri');
+      created.sp = null;
+      save(created);
+      result = invoke([yes]);
+      assert.equal(result.status, 0, result.stderr);
+      const updated = load();
+      assert.equal(updated.apps.length, 1, 'reruns must reuse registration');
+      assert.deepEqual(updated.apps[0], {
+        ...app, appRoles: app.appRoles.map(role => ({...role, isEnabled: true}))
+      }, 'preserve existing IDs, unrelated roles, scopes, URI and pre-authorization; re-enable required role');
+      assert.equal(updated.calls.filter(args => args.slice(0, 3).join(' ') === 'ad app create').length, 1);
+      result = invoke([yes, ...(platform === 'bash' ? ['--app-id', audience] : ['-AppId', audience])]);
+      assert.equal(result.status, 0, result.stderr);
+      save({...initial, tenant: desktopClient});
+      result = invoke([yes]);
+      assert.notEqual(result.status, 0);
+      assert.equal(load().calls.length, 1, 'wrong tenant must fail before directory access');
+      save({...initial, apps: [app, app]});
+      result = invoke([yes]);
+      assert.notEqual(result.status, 0, 'duplicate names must fail');
+      assert.equal(load().calls.some(args => args[0] === 'rest'), false);
+      save({...initial, apps: [{...app, signInAudience: 'AzureADMultipleOrgs'}]});
+      result = invoke([yes]);
+      assert.notEqual(result.status, 0, 'do not convert existing multi-tenant apps');
+      assert.equal(load().calls.some(args => args[0] === 'rest'), false);
+      save({...initial, ignorePatch: true});
+      result = invoke([yes]);
+      assert.notEqual(result.status, 0, 'read-back must reject missing settings');
+      save({...initial, fail: true});
+      result = invoke([yes]);
+      assert.notEqual(result.status, 0, 'Azure errors must propagate');
+    } finally { rmSync(directory, {recursive: true, force: true}); }
+  });
+}
 const deployment = { properties: {
   provisioningState: 'Succeeded',
   parameters: { gatewayAudience: { value: audience }, apimName: { value: 'test-apim' } },

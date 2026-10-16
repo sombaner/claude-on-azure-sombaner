@@ -11,3 +11,4 @@ __pycache__/
 
 admin/setup.local.json
 claude-client-configuration.json
+logs/claude-gateway-setup.log

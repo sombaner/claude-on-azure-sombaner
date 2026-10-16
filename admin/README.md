@@ -52,6 +52,60 @@ not supported. Dry runs remain offline and install nothing. The scripts do not
 install package managers, change execution policy, elevate privileges, or bypass
 organizational controls.
 
+## Create Only the Gateway App Registration
+
+Use [create-claude-gateway-app.sh](create-claude-gateway-app.sh) or
+[create-claude-gateway-app.ps1](create-claude-gateway-app.ps1) to provision only the
+gateway API registration and its service principal (Enterprise Application).
+No Desktop client ID, client secret, Azure deployment, or Azure RBAC assignment
+is needed or created.
+
+Log in to the target tenant first. Bash requires Azure CLI, `jq`, and `uuidgen`;
+PowerShell requires 7.2+, Azure CLI, and `jq`.
+
+```bash
+az login --tenant "<tenant-id>"
+bash admin/create-claude-gateway-app.sh \
+  --tenant-id "<tenant-id>" --display-name "Claude Gateway API" --dry-run
+bash admin/create-claude-gateway-app.sh \
+  --tenant-id "<tenant-id>" --display-name "Claude Gateway API" --yes
+```
+
+```powershell
+az login --tenant "<tenant-id>"
+./admin/create-claude-gateway-app.ps1 `
+  -TenantId "<tenant-id>" -DisplayName "Claude Gateway API" -DryRun
+./admin/create-claude-gateway-app.ps1 `
+  -TenantId "<tenant-id>" -DisplayName "Claude Gateway API" -Yes
+```
+
+Dry runs are offline. Apply requires explicit authorization and verifies the active
+tenant before writing. Reruns reuse one exact display-name match; ambiguous names
+fail. To target an existing registration explicitly, pass `--app-id` / `-AppId`.
+Existing registrations must be single-tenant. Existing role/scope IDs, unrelated
+roles/scopes, identifier URIs, and API pre-authorizations are preserved.
+
+Both scripts set v2 access tokens, add `api://<gateway-client-id>`, expose the
+delegated `access_as_user` scope, and enable `Claude.User`, `Claude.Tier.Pro`,
+`Claude.Tier.Basic`, and `Claude.Suspended` roles for users/groups. Defining roles
+on the API application makes them available through its service principal; this
+does **not** assign the roles to the service principal as a headless caller.
+Users/groups still need `Claude.User` assignments to call the gateway. Do not assign
+`Claude.Suspended` to ordinary users: it blocks access. Team-specific roles and
+group assignments remain managed by the team-governance scripts below.
+
+The signed-in operator must be permitted to create applications/service principals
+and update the selected application (for example, its owner where tenant policy
+allows). Azure subscription Contributor/Owner alone does not grant Entra rights.
+The gateway itself needs no Microsoft Graph runtime permissions.
+
+After applying, the scripts read back and verify the application and service
+principal, then print JSON with `gatewayAudience`, `tokenResource`, object IDs and
+role IDs. Copy `gatewayAudience` and `tokenResource` into your setup config.
+They do not edit that file. Directory errors fail explicitly; if propagation is
+pending, rerun rather than creating another registration. The full deployment
+wrapper's separate Desktop onboarding behavior is unchanged.
+
 ## Configure and Run
 
 On macOS/Linux, interactive setup can create `admin/setup.local.json` from the
