@@ -1,0 +1,35 @@
+admin/create-claude-gateway-app.ps1
+  s_a6fec096c237b2::t_eb62a74e110789 1-94
+admin/create-claude-gateway-app.sh
+  s_a6fec096c237b2::t_eb62a74e110789 1-86,89-110
+  s_a6fec096c237b2::t_9004f5997c83d5 87-88
+admin/README.md
+  s_a6fec096c237b2::t_eb62a74e110789 55-108
+admin/gateway-app-registration.jq
+  s_a6fec096c237b2::t_eb62a74e110789 1-26
+tests/test_gateway_scripts.mjs
+  s_a6fec096c237b2::t_9004f5997c83d5 13-139
+.gitignore
+  h_644325ca508991 14
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "9bb53565bebe2d9be905092aba18ef3e11d503e1",
+  "prompts": {},
+  "humans": {
+    "h_644325ca508991": {
+      "author": "Somnath Banerjee <sombaner@github.com>"
+    }
+  },
+  "sessions": {
+    "s_a6fec096c237b2": {
+      "agent_id": {
+        "tool": "github-copilot-cli",
+        "id": "fb862074-feb0-4ea0-9c3f-90de96bed401",
+        "model": "unknown"
+      },
+      "human_author": "Somnath Banerjee <sombaner@github.com>"
+    }
+  }
+}
